@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J2R Studio — Creative Agency for YouTube Creators</title>
+<meta name="description" content="J2R Studio helps content creators, affiliates and businesses grow on YouTube — scriptwriting, video editing and AI voice-over, from first video to monetization.">
+<meta property="og:title" content="J2R Studio — Turning your vision into reality.">
+<meta property="og:description" content="Scriptwriting · Video Editing · AI Voice-Over. 26+ videos delivered across 3 niches.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E1930'/%3E%3Ccircle cx='54' cy='8' r='16' fill='%233D7EF5'/%3E%3Ccircle cx='8' cy='56' r='13' fill='%233D7EF5'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='900' fill='%23fff' text-anchor='middle'%3EJ2R%3C/text%3E%3C/svg%3E">
+<!-- EDIT: to use your real logo as the browser icon, save it in this folder as j2r-logo.png and replace the line above with: <link rel="icon" href="j2r-logo.png"> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060B16; --bg2:#0A1424; --panel:rgba(17,30,56,.5); --panel-solid:#0D1B33;
+  --border:rgba(122,162,255,.14); --border-strong:rgba(122,162,255,.3);
+  --fg:#F2F6FF; --text:#A9B6CD; --soft:#7E8CA6;
+  --blue:#3D7EF5; --blue-bright:#5E97FF; --glow:rgba(61,126,245,.55);
+  --grad:linear-gradient(92deg,#5E97FF,#9BC0FF 60%,#5E97FF);
+  --font-display:'Archivo',sans-serif; --font-body:'Space Grotesk',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none;cursor:pointer}
+button{cursor:pointer;font-family:inherit;background:none;border:none;color:inherit}
+::selection{background:var(--blue);color:#fff}
+:focus-visible{outline:2px solid var(--blue-bright);outline-offset:3px;border-radius:4px}
+
+/* ---------- Custom cursor ---------- */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;
+  transform:translate(-50%,-50%)}
+.cursor-dot{width:6px;height:6px;background:var(--blue-bright)}
+.cursor-ring{width:34px;height:34px;border:1.5px solid rgba(94,151,255,.5);transition:width .25s,height .25s,border-color .25s}
+body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255,.9)}
+@media (hover:none),(prefers-reduced-motion:reduce){.cursor-dot,.cursor-ring{display:none}}
+
+/* ---------- Progress bar ---------- */
+.progress{position:fixed;top:0;left:0;height:2.5px;width:100%;background:var(--grad);
+  transform-origin:0 50%;transform:scaleX(0);z-index:100}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+  padding:18px clamp(20px,5vw,64px);transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+.nav.scrolled{background:rgba(6,11,22,.72);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border)}
+.nav-logo{font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px}
+.nav-logo .mark{width:36px;height:36px;border-radius:10px;background:#0E1930;border:1px solid var(--border-strong);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;position:relative;overflow:hidden;flex:none}
+.nav-logo .mark::before{content:"";position:absolute;width:24px;height:24px;border-radius:50%;background:var(--blue);top:-11px;right:-11px}
+.nav-logo .mark::after{content:"";position:absolute;width:17px;height:17px;border-radius:50%;background:var(--blue);bottom:-8px;left:-8px}
+.nav-logo .mark b{position:relative;z-index:1}
+.nav-right{display:flex;align-items:center;gap:32px}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text);position:relative;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1.5px;background:var(--blue-bright);
+  transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-cta{font-size:14px;font-weight:600;padding:10px 20px;border-radius:999px;background:var(--blue);color:#fff;
+  box-shadow:0 0 24px -6px var(--glow);transition:background .25s,transform .25s var(--ease),box-shadow .25s}
+.nav-cta:hover{background:var(--blue-bright);transform:translateY(-1px);box-shadow:0 0 34px -4px var(--glow)}
+
+/* ---------- Hero ---------- */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  position:relative;padding:130px clamp(20px,5vw,64px) 90px;overflow:hidden}
+#bg3d{position:absolute;inset:0;z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(58% 45% at 50% 38%,rgba(61,126,245,.16),transparent 70%),
+             radial-gradient(40% 30% at 78% 12%,rgba(61,126,245,.12),transparent 70%),
+             linear-gradient(180deg,rgba(6,11,22,.25),rgba(6,11,22,.05) 40%,var(--bg) 96%)}
+.badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--blue-bright);border:1px solid var(--border-strong);background:rgba(61,126,245,.08);
+  padding:9px 18px;border-radius:999px;margin-bottom:30px;backdrop-filter:blur(6px)}
+.badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--blue-bright);box-shadow:0 0 0 0 rgba(94,151,255,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(94,151,255,0)}100%{box-shadow:0 0 0 0 rgba(94,151,255,0)}}
+.hero h1{font-family:var(--font-display);font-weight:800;letter-spacing:-.035em;line-height:1.02;
+  font-size:clamp(44px,8vw,112px);max-width:15ch}
+.hero h1 .grad{background:var(--grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 6s linear infinite}
+@keyframes sheen{to{background-position:200% 0}}
+.hero h1 .char{display:inline-block;white-space:pre}
+.hero-sub{max-width:640px;margin-top:30px;font-size:clamp(16px,1.6vw,19px);color:var(--text)}
+.hero-cta-row{display:flex;gap:16px;margin-top:42px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;border-radius:999px;
+  padding:15px 30px;transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s,box-shadow .25s;
+  border:1.5px solid transparent;will-change:transform}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 0 34px -8px var(--glow)}
+.btn-primary:hover{background:var(--blue-bright);box-shadow:0 0 48px -6px var(--glow)}
+.btn-ghost{border-color:var(--border-strong);color:var(--fg);background:rgba(13,27,51,.35);backdrop-filter:blur(6px)}
+.btn-ghost:hover{border-color:var(--blue-bright)}
+.btn svg{width:16px;height:16px;transition:transform .25s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:14px;margin-top:56px;width:min(860px,100%)}
+.hstat{text-align:center;padding:20px 18px;border:1px solid var(--border-strong);border-radius:16px;
+  background:rgba(13,27,51,.62);backdrop-filter:blur(10px);box-shadow:0 14px 40px -28px var(--glow)}
+.hstat b{font-family:var(--font-display);font-weight:800;font-size:clamp(34px,4vw,48px);line-height:1;display:block;
+  letter-spacing:-.035em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hstat>span{display:block;margin-top:10px;font-size:12px;font-weight:600;color:var(--text);letter-spacing:.075em;text-transform:uppercase}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.scroll-cue svg{width:14px;height:14px;animation:cue 1.8s var(--ease) infinite}
+@keyframes cue{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* ---------- Marquee ---------- */
+.marquee{border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:20px 0;
+  background:rgba(13,27,51,.3)}
+.marquee-track{display:flex;gap:52px;width:max-content;animation:marquee 30s linear infinite}
+.marquee span{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:52px;white-space:nowrap}
+.marquee .dot{width:6px;height:6px;border-radius:50%;background:var(--blue-bright);flex:none;box-shadow:0 0 10px var(--glow)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- Sections ---------- */
+.section{padding:clamp(80px,10vw,150px) clamp(20px,5vw,64px);position:relative}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:clamp(40px,5vw,64px);flex-wrap:wrap}
+.section-head h2{font-family:var(--font-display);font-weight:700;letter-spacing:-.025em;font-size:clamp(32px,4.5vw,58px)}
+.section-head h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-head .count{font-size:14px;color:var(--soft)}
+
+/* ---------- Services ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.5vw,32px)}
+.svc{border:1px solid var(--border);border-radius:20px;padding:clamp(26px,2.6vw,38px);
+  background:linear-gradient(160deg,rgba(23,40,74,.55),rgba(10,20,36,.55));backdrop-filter:blur(8px);
+  position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.svc::before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;background:var(--blue);
+  opacity:0;filter:blur(80px);top:-70px;right:-50px;transition:opacity .4s}
+.svc:hover{transform:translateY(-6px);border-color:var(--border-strong);box-shadow:0 24px 60px -30px rgba(61,126,245,.45)}
+.svc:hover::before{opacity:.35}
+.svc-icon{width:52px;height:52px;border-radius:14px;background:rgba(61,126,245,.14);color:var(--blue-bright);
+  border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative}
+.svc-icon svg{width:23px;height:23px}
+.svc h3{font-family:var(--font-display);font-weight:600;font-size:21px;margin-bottom:10px;position:relative}
+.svc p{font-size:15px;color:var(--text);position:relative}
+.svc .num{display:block;margin-top:24px;font-size:13px;color:var(--soft);position:relative}
+
+/* ---------- Work ---------- */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:clamp(28px,3vw,44px)}
+.tab{font-size:14px;font-weight:600;padding:11px 22px;border-radius:999px;border:1px solid var(--border);
+  color:var(--text);background:rgba(13,27,51,.35);transition:all .25s var(--ease)}
+.tab:hover{color:#fff;border-color:var(--border-strong)}
+.tab[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 0 26px -8px var(--glow)}
+.tab .n{opacity:.65;font-weight:500;margin-left:6px;font-size:12.5px}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,30px)}
+.project{display:block;border:1px solid var(--border);border-radius:18px;overflow:hidden;
+  background:var(--panel);backdrop-filter:blur(6px);transition:border-color .3s,box-shadow .3s;will-change:transform}
+.project:hover{border-color:var(--border-strong);box-shadow:0 30px 70px -34px rgba(61,126,245,.5)}
+.project.hidden{display:none}
+.project-thumb{aspect-ratio:16/9;position:relative;overflow:hidden;background:#0E1930}
+.project-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.project:hover .project-thumb img{transform:scale(1.06)}
+.project-thumb .view{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,rgba(6,11,22,.1),rgba(6,11,22,.55));opacity:0;transition:opacity .3s}
+.project:hover .view{opacity:1}
+.view-pill{background:#fff;color:#0B1220;font-weight:600;font-size:14px;padding:10px 20px;border-radius:999px;
+  display:flex;align-items:center;gap:8px}
+.view-pill svg{width:13px;height:13px}
+.project-body{padding:16px 18px 18px}
+.project-body h3{font-family:var(--font-display);font-weight:600;font-size:15.5px;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em;transition:color .2s}
+.project:hover .project-body h3{color:var(--blue-bright)}
+.project-body .tag{display:flex;align-items:center;gap:7px;margin-top:10px;font-size:12.5px;color:var(--soft)}
+.project-body .tag i{width:5px;height:5px;border-radius:50%;background:var(--blue-bright);flex:none}
+
+/* ---------- Reviews ---------- */
+.rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.5vw,32px)}
+.rev{border:1px solid var(--border);border-radius:20px;background:linear-gradient(160deg,rgba(23,40,74,.5),rgba(10,20,36,.5));
+  backdrop-filter:blur(8px);padding:clamp(26px,2.6vw,38px);display:flex;flex-direction:column;gap:18px;
+  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.rev:hover{transform:translateY(-5px);border-color:var(--border-strong);box-shadow:0 24px 60px -32px rgba(61,126,245,.45)}
+.stars{display:flex;gap:3px;color:#FFC94D}
+.stars svg{width:15px;height:15px;filter:drop-shadow(0 0 6px rgba(255,201,77,.45))}
+.rev blockquote{font-size:15.5px;color:var(--text);line-height:1.7}
+.rev figcaption{font-size:13.5px;color:var(--soft);margin-top:auto;display:flex;align-items:center;gap:12px}
+.rev figcaption .avatar{width:40px;height:40px;border-radius:50%;background:rgba(61,126,245,.16);
+  border:1px solid var(--border-strong);color:var(--blue-bright);font-family:var(--font-display);font-weight:700;
+  font-size:14px;display:flex;align-items:center;justify-content:center;flex:none}
+.rev figcaption b{display:block;color:var(--fg);font-weight:600;font-size:15px}
+
+/* ---------- Process ---------- */
+.process{border:1px solid var(--border);border-radius:28px;margin:0 clamp(12px,2vw,32px);
+  background:linear-gradient(150deg,#0D1B33 0%,#091223 55%,#0B1830 100%);position:relative;overflow:hidden}
+.process::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:var(--blue);
+  opacity:.16;filter:blur(110px);top:-140px;right:-80px}
+.process::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:#1D4ED8;
+  opacity:.14;filter:blur(100px);bottom:-120px;left:-60px}
+.process-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,80px);position:relative;z-index:1}
+.process-lede{font-family:var(--font-display);font-weight:500;font-size:clamp(22px,2.8vw,34px);line-height:1.35;letter-spacing:-.01em}
+.process-lede em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.process-body{color:var(--text);margin-top:24px;max-width:56ch}
+.steps{list-style:none;display:flex;flex-direction:column}
+.steps li{display:flex;justify-content:space-between;align-items:center;padding:19px 0;
+  border-bottom:1px solid rgba(122,162,255,.16);font-weight:500;font-size:16.5px;transition:padding-left .3s var(--ease)}
+.steps li:hover{padding-left:10px}
+.steps li:first-child{border-top:1px solid rgba(122,162,255,.16)}
+.steps .num{font-size:13px;color:var(--soft)}
+.stats{display:flex;gap:clamp(30px,4.5vw,68px);margin-top:clamp(40px,5vw,60px);flex-wrap:wrap}
+.stat b{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,3.6vw,46px);display:block;letter-spacing:-.02em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:13.5px;color:var(--soft)}
+
+/* ---------- Contact ---------- */
+.contact{text-align:center}
+.contact .kicker{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright);margin-bottom:22px}
+.contact h2{font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;font-size:clamp(36px,7.5vw,104px);line-height:1.05}
+.contact h2 a{background:var(--grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;
+  color:transparent;animation:sheen 6s linear infinite;transition:filter .25s}
+.contact h2 a:hover{filter:brightness(1.25)}
+.contact > p{margin-top:24px;color:var(--text)}
+.contact-cards{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:44px}
+.ccard{display:flex;align-items:center;gap:12px;border:1px solid var(--border);border-radius:14px;
+  background:var(--panel);backdrop-filter:blur(6px);padding:15px 22px;font-size:14.5px;font-weight:500;color:var(--text);
+  transition:transform .25s var(--ease),border-color .25s,color .25s,box-shadow .25s}
+.ccard:hover{transform:translateY(-3px);border-color:var(--border-strong);color:#fff;box-shadow:0 16px 40px -24px rgba(61,126,245,.6)}
+.ccard svg{width:18px;height:18px;color:var(--blue-bright);flex:none}
+.footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:30px clamp(20px,5vw,64px);border-top:1px solid var(--border);font-size:13px;color:var(--soft)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .process-grid{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .work-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:768px){
+  .nav-links{display:none}
+  .work-grid,.svc-grid,.rev-grid{grid-template-columns:1fr}
+  .project-body h3{min-height:0}
+  .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .hstat{padding:17px 10px}
+  .hstat b{font-size:clamp(30px,10vw,42px)}
+  .hstat>span{font-size:10px;letter-spacing:.045em}
+}
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .marquee-track,.scroll-cue svg,.badge .pulse{animation:none}
+  .hero h1 .grad,.contact h2 a{animation:none}
+  *,*::before,*::after{transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo" aria-label="J2R Studio — home">
+    <span class="mark" aria-hidden="true"><b>J2R</b></span>J2R Studio
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Hire us</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="bg3d" aria-hidden="true"></canvas>
+  <p class="badge" data-reveal><span class="pulse" aria-hidden="true"></span>Creative Agency for YouTube Creators</p>
+  <h1 id="heroTitle" aria-label="Turning your vision into reality.">Turning your <span class="grad">vision</span> into reality.</h1>
+  <p class="hero-sub" data-reveal>
+    We collaborate with content creators, affiliates and businesses to overcome marketing
+    challenges — engaging content, a stronger presence, and strategies that reach more customers.
+  </p>
+  <div class="hero-cta-row" data-reveal>
+    <a class="btn btn-primary" data-magnetic href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Start your channel
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="btn btn-ghost" data-magnetic href="#work">See our work</a>
+  </div>
+  <div class="hero-stats" data-reveal>
+    <div class="hstat"><b><span data-count="26">0</span>+</b><span>Videos delivered</span></div>
+    <div class="hstat"><b><span data-count="2.72" data-decimals="2">0</span>M+</b><span>Combined views</span></div>
+    <div class="hstat"><b><span data-count="3">0</span></b><span>Niches mastered</span></div>
+    <div class="hstat"><b><span data-count="450">0</span>%</b><span>Client sub growth</span></div>
+  </div>
+  <p class="scroll-cue">Scroll
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v16m0 0-5-5m5 5 5-5"/></svg>
+  </p>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Scriptwriting <i class="dot"></i> Video Editing <i class="dot"></i> AI Voice-Over <i class="dot"></i> Channel Growth <i class="dot"></i> Monetization <i class="dot"></i></span>
+    <span>Scriptwriting <i class="dot"></i> Video Editing <i class="dot"></i> AI Voice-Over <i class="dot"></i> Channel Growth <i class="dot"></i> Monetization <i class="dot"></i></span>
+  </div>
+</div>
+
+<main>
+<section class="section" id="services">
+  <div class="section-head" data-reveal>
+    <h2>What <span class="grad">we do</span></h2>
+    <span class="count">Full-service content creation</span>
+  </div>
+  <div class="svc-grid">
+    <div class="svc" data-reveal data-tilt>
+      <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+      <h3>Scriptwriting</h3>
+      <p>Research-backed scripts that hook viewers in the first seconds and keep them watching to the end.</p>
+      <span class="num">01</span>
+    </div>
+    <div class="svc" data-reveal data-tilt>
+      <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/></svg></div>
+      <h3>Video Editing</h3>
+      <p>Clean, retention-focused edits — pacing, captions, b-roll and sound design that make channels grow.</p>
+      <span class="num">02</span>
+    </div>
+    <div class="svc" data-reveal data-tilt>
+      <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3Z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg></div>
+      <h3>AI Voice-Over</h3>
+      <p>Natural-sounding AI narration for faceless channels — consistent, clear and ready in any style.</p>
+      <span class="num">03</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work" style="padding-top:0">
+  <div class="section-head" data-reveal>
+    <h2>Our <span class="grad">work</span></h2>
+    <span class="count">3 portfolios · 26 videos · 2.72M+ combined views</span>
+  </div>
+  <div class="tabs" data-reveal role="group" aria-label="Filter portfolio">
+    <button class="tab" data-filter="all" aria-pressed="true">All <span class="n">26</span></button>
+    <button class="tab" data-filter="dog" aria-pressed="false">Dog Videos <span class="n">15</span></button>
+    <button class="tab" data-filter="horror" aria-pressed="false">Horror &amp; Supernatural <span class="n">6</span></button>
+    <button class="tab" data-filter="tv" aria-pressed="false">Sheridan Universe · TV <span class="n">5</span></button>
+  </div>
+  <div class="work-grid" id="workGrid">
+    <a class="project" data-cat="dog" href="https://youtu.be/U762mhCluus" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/U762mhCluus/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/U762mhCluus/hqdefault.jpg'" alt="I wish I knew these BEFORE getting a Chihuahua — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>I wish I knew these BEFORE getting a Chihuahua</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/Nrikh32MVTw" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/Nrikh32MVTw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/Nrikh32MVTw/hqdefault.jpg'" alt="Things ONLY Poodle Parents Will Understand — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Things ONLY Poodle Parents Will Understand (Seriously)</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/wo_pWffhJuw" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/wo_pWffhJuw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/wo_pWffhJuw/hqdefault.jpg'" alt="How You Hurt Your Jack Russell Without Realizing — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>How You Hurt Your Jack Russell Without Realizing</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/hSFSUZUWabU" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/hSFSUZUWabU/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/hSFSUZUWabU/hqdefault.jpg'" alt="10 DANGEROUS mistakes every Chihuahua owner must avoid — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>10 DANGEROUS mistakes every Chihuahua owner must avoid</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/c8hdrz0mvSM" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/c8hdrz0mvSM/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/c8hdrz0mvSM/hqdefault.jpg'" alt="What it's REALLY like owning a Shiba Inu — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>What it's REALLY like owning a Shiba Inu</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/ND19lnhHB18" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/ND19lnhHB18/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/ND19lnhHB18/hqdefault.jpg'" alt="9 Surprising Things Jack Russells Absolutely HATE — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>9 Surprising Things Jack Russells Absolutely HATE</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/cGccruqbLws" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/cGccruqbLws/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/cGccruqbLws/hqdefault.jpg'" alt="Things NO ONE tells you about owning a Pomeranian — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Things NO ONE tells you about owning a Pomeranian</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/1UcnnNsOFdc" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/1UcnnNsOFdc/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/1UcnnNsOFdc/hqdefault.jpg'" alt="I wish I knew these BEFORE getting a Mini Schnauzer — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>I wish I knew these BEFORE getting a Mini Schnauzer</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/jF5tG1Nf8kE" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/jF5tG1Nf8kE/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/jF5tG1Nf8kE/hqdefault.jpg'" alt="I wish I knew these BEFORE getting a Cavalier King Charles Spaniel — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>I wish I knew these BEFORE getting a Cavalier King Charles Spaniel</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/7e-kQzYBP0U" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/7e-kQzYBP0U/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/7e-kQzYBP0U/hqdefault.jpg'" alt="Things NOBODY tells you about owning a Rottweiler — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Things NOBODY tells you about owning a Rottweiler</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/YQLFwf7QFz0" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/YQLFwf7QFz0/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/YQLFwf7QFz0/hqdefault.jpg'" alt="Why you're NEVER ready to own a Newfoundland dog — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Why you're NEVER ready to own a Newfoundland dog</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/T6fMIP8cw4A" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/T6fMIP8cw4A/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/T6fMIP8cw4A/hqdefault.jpg'" alt="Things NO ONE tells you about owning a Whippet — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Things NO ONE tells you about owning a Whippet</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/6V-Z8wt2VcU" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/6V-Z8wt2VcU/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/6V-Z8wt2VcU/hqdefault.jpg'" alt="Owning a Poodle: The Good, The Bad, The Ugly — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Owning a Poodle: The Good, The Bad, The Ugly</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/kOCFq-6D0ss" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/kOCFq-6D0ss/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/kOCFq-6D0ss/hqdefault.jpg'" alt="Things NOBODY tells you about owning a Basset Hound — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Things NOBODY tells you about owning a Basset Hound</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="dog" href="https://youtu.be/o0auOlJ-KJM" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/o0auOlJ-KJM/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/o0auOlJ-KJM/hqdefault.jpg'" alt="How Chihuahuas Choose Their Favorite Person — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>How Chihuahuas Choose Their Favorite Person</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
+    <a class="project" data-cat="horror" href="https://youtu.be/DoaDuITLgWw" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/DoaDuITLgWw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/DoaDuITLgWw/hqdefault.jpg'" alt="Scariest Hiking Moments EVER Recorded on Camera — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Scariest Hiking Moments EVER Recorded on Camera</h3><span class="tag"><i></i>Trail Terror · Horror</span></div></a>
+    <a class="project" data-cat="horror" href="https://youtu.be/7MEVLlrZaEs" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/7MEVLlrZaEs/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/7MEVLlrZaEs/hqdefault.jpg'" alt="BREAKING: Bigfoot Encounters Hikers — New Trail Cam Footage — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>BREAKING: Bigfoot Encounters Hikers — NEW Trail Cam Footage</h3><span class="tag"><i></i>Trail Terror · Horror</span></div></a>
+    <a class="project" data-cat="horror" href="https://youtu.be/0ZQYd2sq9vY" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/0ZQYd2sq9vY/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/0ZQYd2sq9vY/hqdefault.jpg'" alt="Unexplainable Wilderness Sightings — Disturbing Real Footage — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>UNEXPLAINABLE Wilderness Sightings — Disturbing Real Footage</h3><span class="tag"><i></i>Trail Terror · Horror</span></div></a>
+    <a class="project" data-cat="horror" href="https://youtu.be/KMEH0pucuRY" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/KMEH0pucuRY/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/KMEH0pucuRY/hqdefault.jpg'" alt="Viral Bigfoot Encounters Spotted in the Woods — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>VIRAL BIGFOOT ENCOUNTERS SPOTTED IN THE WOODS</h3><span class="tag"><i></i>Trail Terror · Horror · 196K views</span></div></a>
+    <a class="project" data-cat="horror" href="https://youtu.be/EJjwW1-oG64" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/EJjwW1-oG64/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/EJjwW1-oG64/hqdefault.jpg'" alt="Terrifying Officer Encounters Caught On Camera Are REAL — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Terrifying Officer Encounters Caught On Camera Are REAL</h3><span class="tag"><i></i>Trail Terror · Horror · 175K views</span></div></a>
+    <a class="project" data-cat="horror" href="https://youtu.be/3cEqDywZFfI" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/3cEqDywZFfI/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/3cEqDywZFfI/hqdefault.jpg'" alt="Dogman Caught Near Campsite — The Most Disturbing Clips Yet — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>DOGMAN CAUGHT Near Campsite — The Most DISTURBING Clips Yet</h3><span class="tag"><i></i>Trail Terror · Horror</span></div></a>
+    <a class="project" data-cat="tv" href="https://youtu.be/xSTfZPf_5C4" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/xSTfZPf_5C4/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/xSTfZPf_5C4/hqdefault.jpg'" alt="LANDMAN Season 2 Official Trailer Breakdown — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>LANDMAN Season 2 OFFICIAL TRAILER Breakdown</h3><span class="tag"><i></i>The Wrangler · Sheridan Universe</span></div></a>
+    <a class="project" data-cat="tv" href="https://youtu.be/Nc7HYXCMh4Q" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/Nc7HYXCMh4Q/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/Nc7HYXCMh4Q/hqdefault.jpg'" alt="LANDMAN Season 3: The Rise of CTT — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>LANDMAN S3: Cami's CTT Revenge Theory</h3><span class="tag"><i></i>The Wrangler · 113K views</span></div></a>
+    <a class="project" data-cat="tv" href="https://youtu.be/VTbV1estBm0" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/VTbV1estBm0/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/VTbV1estBm0/hqdefault.jpg'" alt="Tulsa King Season 3 Episode 7: Art of War Leaked — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>Tulsa King S3 E7: Art of War LEAKED?</h3><span class="tag"><i></i>The Wrangler · 68K views</span></div></a>
+    <a class="project" data-cat="tv" href="https://youtu.be/p48O7eT-MDA" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/p48O7eT-MDA/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/p48O7eT-MDA/hqdefault.jpg'" alt="1923: Alexandra's Secret Changes Everything — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>1923: Alexandra's Secret Changes EVERYTHING!</h3><span class="tag"><i></i>The Wrangler · 71K views</span></div></a>
+    <a class="project" data-cat="tv" href="https://youtu.be/vdiwVk2F630" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/vdiwVk2F630/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/vdiwVk2F630/hqdefault.jpg'" alt="LANDMAN Season 3 Official Teaser Trailer — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>LANDMAN Season 3 Official Teaser Trailer</h3><span class="tag"><i></i>The Wrangler · 109K views</span></div></a>
+  </div>
+</section>
+
+<section class="section" id="reviews" style="padding-top:0">
+  <div class="section-head" data-reveal>
+    <h2>Client <span class="grad">feedback</span></h2>
+    <span class="count">Real recommendations via Facebook</span>
+  </div>
+  <div class="rev-grid">
+    <figure class="rev" data-reveal data-tilt>
+      <div class="stars" aria-label="5 star recommendation"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg></div>
+      <blockquote>Janiel is the kind of editor you stop looking for once you find him. After going through somewhere between 20 and 30 editors, I finally landed on someone who actually gets what makes people stay on a video. He clearly understands all the nuances of retention and engagement — not just the technical side, but the instincts. The results speak for themselves.</blockquote>
+      <figcaption><span class="avatar" aria-hidden="true">RJ</span><span><b>Richard Jeng</b>recommends J2R Studios</span></figcaption>
+    </figure>
+    <figure class="rev" data-reveal data-tilt>
+      <div class="stars" aria-label="5 star recommendation"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg></div>
+      <blockquote>J2R studio does really excellent work. They were able to increase my subscribers count by nearly 450% to 30k subs. Video retention also shot up 8–10% for our videos across the board. I can't recommend them enough! Easy to work with, professional and extremely reasonable prices.</blockquote>
+      <figcaption><span class="avatar" aria-hidden="true">SC</span><span><b>The Smart Canine</b>recommends J2R Studios</span></figcaption>
+    </figure>
+    <figure class="rev" data-reveal data-tilt>
+      <div class="stars" aria-label="5 star recommendation"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg></div>
+      <blockquote>Very happy with Janiel, the editing is perfect and he is listening to instructions, and applying them very fast. Also very polite and respectful. Overall I really recommend working with him!</blockquote>
+      <figcaption><span class="avatar" aria-hidden="true">AL</span><span><b>Anastasiya Lex</b>recommends J2R Studios</span></figcaption>
+    </figure>
+    <figure class="rev" data-reveal data-tilt>
+      <div class="stars" aria-label="5 star recommendation"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg></div>
+      <blockquote>Janiel is great to work with! Understands new ideas, feedback &amp; always looking for ways to get better! Overall, I recommend working with him.</blockquote>
+      <figcaption><span class="avatar" aria-hidden="true">TW</span><span><b>The Wrangler</b>recommends J2R Studios</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section process" id="how">
+  <div class="section-head" data-reveal><h2>How it <span class="grad">works</span></h2></div>
+  <div class="process-grid">
+    <div data-reveal>
+      <p class="process-lede">We build YouTube channels that earn — <em>you bring the idea, we handle script to upload</em>.</p>
+      <p class="process-body">
+        Whether you're starting from scratch or scaling an existing channel, J2R Studio
+        produces high-quality content built to attract viewers, grow your audience and
+        get you to YouTube monetization — without you touching an editing timeline.
+      </p>
+      <div class="stats">
+        <div class="stat"><b><span data-count="26">0</span>+</b><span>Videos delivered</span></div>
+        <div class="stat"><b>+<span data-count="450">0</span>%</b><span>Client subscriber growth</span></div>
+        <div class="stat"><b><span data-count="10">0</span>%</b><span>Retention lift across videos</span></div>
+      </div>
+    </div>
+    <ul class="steps" data-reveal>
+      <li>Idea &amp; Script <span class="num">01</span></li>
+      <li>AI Voice-Over <span class="num">02</span></li>
+      <li>Edit &amp; Polish <span class="num">03</span></li>
+      <li>Upload-Ready Delivery <span class="num">04</span></li>
+      <li>Grow &amp; Monetize <span class="num">05</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <p class="kicker" data-reveal>Ready to get started?</p>
+  <h2 data-reveal><a href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Let's build your<br>channel&nbsp;→</a></h2>
+  <p data-reveal>Send us a message today, and let's build your next successful YouTube channel together.</p>
+  <div class="contact-cards" data-reveal>
+    <a class="ccard" href="mailto:j2rstudios101@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+      j2rstudios101@gmail.com
+    </a>
+    <a class="ccard" href="tel:+639625116983">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+      0962 511 6983
+    </a>
+    <a class="ccard" href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 8h3V4.5h-3A3.5 3.5 0 0 0 10.5 8v2.5H8V14h2.5v6H14v-6h2.5l.5-3.5h-3V8.5A.5.5 0 0 1 14 8Z"/></svg>
+      facebook.com/j2rstudios
+    </a>
+    <a class="ccard" href="https://www.instagram.com/j2r_studios" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+      @j2r_studios
+    </a>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <span>© 2026 J2R Studio. All rights reserved.</span>
+  <span>Turning your vision into reality.</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nav=document.getElementById('nav');
+  var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>24)};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* ---- Portfolio filter (works without GSAP) ---- */
+  var tabs=document.querySelectorAll('.tab'),cards=document.querySelectorAll('.project');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.setAttribute('aria-pressed',x===t?'true':'false')});
+      var f=t.dataset.filter;
+      var visible=[];
+      cards.forEach(function(c){
+        var show=(f==='all'||c.dataset.cat===f);
+        c.classList.toggle('hidden',!show);
+        if(show)visible.push(c);
+      });
+      if(!reduced&&window.gsap){
+        gsap.fromTo(visible,{opacity:0,y:16},{opacity:1,y:0,duration:.35,stagger:.03,ease:'power1.out',overwrite:true,clearProps:'opacity,transform'});
+        if(window.ScrollTrigger)ScrollTrigger.refresh();
+      }
+    });
+  });
+
+  /* ---- 3D particle wave hero (Three.js) ---- */
+  if(!reduced&&typeof THREE!=='undefined'){
+    try{
+      var canvas=document.getElementById('bg3d');
+      var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+      var scene=new THREE.Scene();
+      scene.fog=new THREE.FogExp2(0x060B16,0.0035);
+      var camera=new THREE.PerspectiveCamera(60,1,1,1000);
+      camera.position.set(0,42,110);
+      var SEP=5.5,AX=110,AY=60;
+      var num=AX*AY,pos=new Float32Array(num*3),i,ix,iy,k=0;
+      for(ix=0;ix<AX;ix++)for(iy=0;iy<AY;iy++){
+        pos[k*3]=SEP*ix-(SEP*AX)/2;
+        pos[k*3+1]=0;
+        pos[k*3+2]=SEP*iy-(SEP*AY)/2;
+        k++;
+      }
+      var geo=new THREE.BufferGeometry();
+      geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+      var mat=new THREE.PointsMaterial({color:0x3D7EF5,size:1.7,transparent:true,opacity:.8,sizeAttenuation:true});
+      var points=new THREE.Points(geo,mat);
+      scene.add(points);
+      var mx=0,my=0,tx=0,ty=0;
+      window.addEventListener('pointermove',function(e){
+        tx=(e.clientX/window.innerWidth-.5)*2;
+        ty=(e.clientY/window.innerHeight-.5)*2;
+      },{passive:true});
+      function resize(){
+        var w=canvas.clientWidth||window.innerWidth,h=canvas.clientHeight||window.innerHeight;
+        renderer.setSize(w,h,false);
+        camera.aspect=w/h;camera.updateProjectionMatrix();
+      }
+      window.addEventListener('resize',resize);resize();
+      var t=0,running=true,visible=true;
+      document.addEventListener('visibilitychange',function(){visible=!document.hidden});
+      if('IntersectionObserver'in window){
+        new IntersectionObserver(function(en){running=en[0].isIntersecting},{threshold:0}).observe(canvas);
+      }
+      var arr=geo.attributes.position.array;
+      (function animate(){
+        requestAnimationFrame(animate);
+        if(!running||!visible)return;
+        t+=0.012;
+        var n=0;
+        for(ix=0;ix<AX;ix++)for(iy=0;iy<AY;iy++){
+          arr[n*3+1]=Math.sin((ix+t*2)*.28)*3.2+Math.cos((iy+t*2)*.24)*3.2;
+          n++;
+        }
+        geo.attributes.position.needsUpdate=true;
+        mx+=(tx-mx)*.04;my+=(ty-my)*.04;
+        camera.position.x=mx*14;
+        camera.position.y=42+my*-6;
+        camera.lookAt(0,0,-10);
+        points.rotation.y=mx*.06;
+        renderer.render(scene,camera);
+      })();
+    }catch(e){/* WebGL unavailable — CSS glows still show */}
+  }
+
+  if(reduced||typeof gsap==='undefined')return; // content stays fully visible without JS anims
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ---- Scroll progress ---- */
+  gsap.to('.progress',{scaleX:1,ease:'none',
+    scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:.3}});
+
+  /* ---- Hero headline word stagger (accessible via aria-label) ---- */
+  var h1=document.getElementById('heroTitle'),words=[];
+  h1.childNodes.forEach(function(n){
+    if(n.nodeType===3){n.textContent.split(/(\s+)/).forEach(function(w){if(w)words.push(document.createTextNode(w))})}
+    else words.push(n);
+  });
+  h1.textContent='';
+  words.forEach(function(w){
+    var s=document.createElement('span');s.className='char';s.setAttribute('aria-hidden','true');
+    s.appendChild(w);h1.appendChild(s);
+  });
+  gsap.from('#heroTitle .char',{yPercent:70,opacity:0,duration:.8,stagger:.055,ease:'expo.out',delay:.15});
+  gsap.from('.badge',{opacity:0,y:-12,duration:.5,ease:'power1.out'});
+  gsap.from('.hero-sub,.hero-cta-row,.hero-stats,.scroll-cue',{opacity:0,y:16,duration:.55,stagger:.1,ease:'power1.out',delay:.5});
+
+  /* ---- Scroll reveals ---- */
+  gsap.utils.toArray('[data-reveal]').forEach(function(el){
+    if(el.closest('.hero'))return;
+    gsap.from(el,{opacity:0,y:16,duration:.45,ease:'power1.out',
+      scrollTrigger:{trigger:el,start:'top 90%',toggleActions:'play none none reverse'}});
+  });
+
+  /* ---- Animated counters ---- */
+  gsap.utils.toArray('[data-count]').forEach(function(el){
+    var end=parseFloat(el.dataset.count),decimals=parseInt(el.dataset.decimals||'0',10),obj={v:0};
+    gsap.to(obj,{v:end,duration:1.6,ease:'power2.out',
+      scrollTrigger:{trigger:el,start:'top 92%',once:true},
+      onUpdate:function(){el.textContent=decimals?obj.v.toFixed(decimals):Math.round(obj.v)}});
+  });
+
+  /* ---- Magnetic buttons ---- */
+  if(window.matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('[data-magnetic]').forEach(function(b){
+      var xTo=gsap.quickTo(b,'x',{duration:.35,ease:'power3'}),
+          yTo=gsap.quickTo(b,'y',{duration:.35,ease:'power3'});
+      b.addEventListener('mousemove',function(e){
+        var r=b.getBoundingClientRect();
+        xTo((e.clientX-r.left-r.width/2)*.25);
+        yTo((e.clientY-r.top-r.height/2)*.35);
+      });
+      b.addEventListener('mouseleave',function(){xTo(0);yTo(0)});
+    });
+
+    /* ---- Card tilt ---- */
+    document.querySelectorAll('[data-tilt],.project').forEach(function(c){
+      c.addEventListener('mousemove',function(e){
+        var r=c.getBoundingClientRect();
+        var rx=((e.clientY-r.top)/r.height-.5)*-5,
+            ry=((e.clientX-r.left)/r.width-.5)*5;
+        gsap.to(c,{rotateX:rx,rotateY:ry,transformPerspective:800,duration:.4,ease:'power2.out'});
+      });
+      c.addEventListener('mouseleave',function(){gsap.to(c,{rotateX:0,rotateY:0,duration:.5,ease:'power2.out'})});
+    });
+
+    /* ---- Custom cursor ---- */
+    var dot=document.querySelector('.cursor-dot'),ring=document.querySelector('.cursor-ring');
+    var dx=gsap.quickTo(dot,'left',{duration:.08,ease:'power2'}),dy=gsap.quickTo(dot,'top',{duration:.08,ease:'power2'});
+    var rx2=gsap.quickTo(ring,'left',{duration:.28,ease:'power2'}),ry2=gsap.quickTo(ring,'top',{duration:.28,ease:'power2'});
+    window.addEventListener('pointermove',function(e){dx(e.clientX);dy(e.clientY);rx2(e.clientX);ry2(e.clientY)},{passive:true});
+    document.querySelectorAll('a,button').forEach(function(el){
+      el.addEventListener('mouseenter',function(){document.body.classList.add('link-hover')});
+      el.addEventListener('mouseleave',function(){document.body.classList.remove('link-hover')});
+    });
+  }
+})();
+</script>
+</body>
+</html>
