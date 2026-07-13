@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>J2R Studio — Creative Agency for YouTube Creators</title>
-<meta name="description" content="J2R Studio helps content creators, affiliates and businesses grow on YouTube — scriptwriting, video editing and AI voice-over, from first video to monetization.">
+<meta name="description" content="J2R Studio helps creators, affiliates, and businesses produce high-performing content through scriptwriting, video editing, and AI voice-over.">
 <meta property="og:title" content="J2R Studio — Turning your vision into reality.">
-<meta property="og:description" content="Scriptwriting · Video Editing · AI Voice-Over. 26+ videos delivered across 3 niches.">
+<meta property="og:description" content="Scriptwriting, video editing, and AI voice-over for content creators and growing channels.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E1930'/%3E%3Ccircle cx='54' cy='8' r='16' fill='%233D7EF5'/%3E%3Ccircle cx='8' cy='56' r='13' fill='%233D7EF5'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='900' fill='%23fff' text-anchor='middle'%3EJ2R%3C/text%3E%3C/svg%3E">
 <!-- EDIT: to use your real logo as the browser icon, save it in this folder as j2r-logo.png and replace the line above with: <link rel="icon" href="j2r-logo.png"> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,32 +127,40 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .show-head h2{font-family:var(--font-display);font-weight:700;letter-spacing:-.03em;font-size:clamp(36px,5vw,66px);line-height:1.04}
 .show-head .count{font-size:14px;color:var(--soft);max-width:38ch}
 .service-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;position:relative;z-index:1}
-.service-tab{min-height:170px;text-align:left;border:1px solid var(--border);border-radius:22px;padding:24px;
-  background:linear-gradient(145deg,rgba(20,34,62,.68),rgba(8,16,31,.62));position:relative;overflow:hidden;
-  transition:transform .35s var(--ease),border-color .35s,background .35s,box-shadow .35s}
-.service-tab::before{content:"";position:absolute;inset:auto -40px -70px auto;width:150px;height:150px;border-radius:50%;
-  background:var(--blue);filter:blur(55px);opacity:0;transition:opacity .35s}
-.service-tab:hover{transform:translateY(-5px);border-color:var(--border-strong)}
-.service-tab[aria-selected="true"]{border-color:rgba(94,151,255,.7);background:linear-gradient(145deg,rgba(36,67,126,.78),rgba(10,24,48,.82));
-  box-shadow:0 28px 70px -45px var(--glow)}
-.service-tab[aria-selected="true"]::before{opacity:.55}
-.service-num{display:block;color:var(--blue-bright);font-size:12px;font-weight:700;letter-spacing:.15em}
-.service-tab strong{display:block;font-family:var(--font-display);font-size:clamp(20px,2.2vw,29px);margin-top:35px;letter-spacing:-.02em}
-.service-tab small{display:block;color:var(--soft);margin-top:5px;font-size:13px}
-.service-tab .arr{position:absolute;right:22px;top:22px;font-size:22px;color:var(--soft);transition:transform .3s,color .3s}
-.service-tab[aria-selected="true"] .arr{transform:rotate(45deg);color:#fff}
+.service-tab{min-height:370px;text-align:left;border:1px solid var(--border);border-radius:22px;padding:0;
+  background:#081326;position:relative;overflow:hidden;isolation:isolate;
+  transition:transform .4s var(--ease),border-color .35s,box-shadow .35s}
+.service-tab::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,8,15,.08) 20%,rgba(5,8,15,.42) 52%,rgba(5,8,15,.96) 100%)}
+.service-tab::after{content:"";position:absolute;left:24px;right:24px;bottom:0;height:3px;z-index:3;background:var(--blue-bright);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.service-tab:hover{transform:translateY(-7px);border-color:var(--border-strong);box-shadow:0 32px 80px -46px var(--glow)}
+.service-tab[aria-selected="true"]{border-color:rgba(94,151,255,.88);box-shadow:0 32px 84px -44px var(--glow)}
+.service-tab[aria-selected="true"]::after{transform:scaleX(1)}
+.service-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;
+  pointer-events:none;filter:saturate(.88) brightness(.82);transform:scale(1.015);transition:transform .8s var(--ease),filter .45s}
+.service-tab:hover .service-cover,.service-tab[aria-selected="true"] .service-cover{transform:scale(1.07);filter:saturate(1.08) brightness(.96)}
+.service-content{position:absolute;inset:0;z-index:2;padding:24px;display:flex;flex-direction:column;align-items:flex-start}
+.service-num{display:block;color:#fff;font-size:12px;font-weight:800;letter-spacing:.15em;padding:7px 10px;border-radius:999px;
+  background:rgba(5,8,15,.55);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px)}
+.service-copy{margin-top:auto}
+.service-tab strong{display:block;font-family:var(--font-display);font-size:clamp(24px,2.5vw,34px);letter-spacing:-.025em;text-shadow:0 2px 22px rgba(0,0,0,.65)}
+.service-tab small{display:block;color:rgba(242,246,255,.76);margin-top:7px;font-size:13px}
+.service-view{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:10px 14px;border-radius:999px;background:#fff;color:#0b1220;
+  font-size:12px;font-weight:800;letter-spacing:.03em;transition:background .25s,color .25s,transform .25s}
+.service-tab:hover .service-view,.service-tab[aria-selected="true"] .service-view{background:var(--blue-bright);color:#fff;transform:translateX(3px)}
 .service-panels{margin-top:16px;position:relative;z-index:1}
 .service-panel{display:none;min-height:250px;border:1px solid var(--border);border-radius:24px;padding:clamp(28px,4vw,52px);
   background:rgba(10,20,38,.56);overflow:hidden}
 .service-panel.active{display:block;animation:panelIn .55s var(--ease) both}
 @keyframes panelIn{from{opacity:0;transform:translateY(16px);clip-path:inset(0 0 18% 0 round 24px)}to{opacity:1;transform:none;clip-path:inset(0 0 0 0 round 24px)}}
-.panel-empty{min-height:170px;display:flex;align-items:end}
-.panel-empty p{font-family:var(--font-display);font-size:clamp(24px,3.6vw,48px);font-weight:650;color:rgba(242,246,255,.16);letter-spacing:-.03em}
-.editing-panel{display:block}
+.service-detail,.editing-panel{display:block;max-width:760px}
+.service-detail h3,.editing-panel h3{font-family:var(--font-display);font-size:clamp(30px,4vw,54px);line-height:1.08;letter-spacing:-.03em}
+.service-detail p,.editing-panel p{color:var(--text);margin-top:18px;max-width:55ch}
 .editing-intro{display:flex;align-items:end;justify-content:space-between;gap:28px;flex-wrap:wrap}
 .editing-intro>div{max-width:700px}
-.editing-panel h3{font-family:var(--font-display);font-size:clamp(30px,4vw,54px);line-height:1.08;letter-spacing:-.03em}
-.editing-panel p{color:var(--text);margin-top:18px;max-width:50ch}
+.portfolio-cta{display:inline-flex;align-items:center;gap:12px;margin-top:28px;padding:14px 22px;border-radius:999px;background:var(--blue);
+  color:#fff;font-size:14px;font-weight:700;box-shadow:0 0 34px -12px var(--glow);transition:transform .25s var(--ease),background .25s,box-shadow .25s}
+.portfolio-cta:hover{transform:translateY(-3px);background:var(--blue-bright);box-shadow:0 16px 42px -20px var(--glow)}
 .format-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}
 .format-card{border:1px solid var(--border-strong);border-radius:22px;overflow:hidden;background:rgba(7,15,29,.78);
   transition:transform .45s var(--ease),border-color .35s,box-shadow .35s;position:relative}
@@ -178,6 +186,12 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .format-body strong{display:block;font-family:var(--font-display);font-size:clamp(21px,2.2vw,30px);line-height:1.15;letter-spacing:-.025em;margin-top:7px}
 .format-body p{font-size:13px;margin-top:9px;color:var(--soft)}
 .format-number{font-family:var(--font-display);font-weight:800;font-size:38px;color:rgba(242,246,255,.12);line-height:1}
+.portfolio-link-card{min-height:250px;padding:30px;display:flex;align-items:flex-end;background:
+  radial-gradient(circle at 82% 12%,rgba(61,126,245,.35),transparent 34%),linear-gradient(145deg,rgba(18,36,68,.96),rgba(7,15,29,.98))}
+.portfolio-link-card::before{content:"";position:absolute;width:170px;height:170px;border:1px solid rgba(122,162,255,.22);border-radius:50%;right:-30px;top:-55px}
+.portfolio-link-card .format-body{width:100%;padding:0;position:relative;z-index:2}
+.portfolio-link-card .format-open{right:24px;top:24px;bottom:auto}
+.portfolio-format-badge{position:absolute;left:30px;top:30px;font-size:11px;font-weight:800;letter-spacing:.13em;color:var(--blue-bright)}
 .short-media{background:radial-gradient(circle at 70% 15%,rgba(94,151,255,.35),transparent 38%),#081326;display:grid;place-items:center}
 .phone-reel{height:86%;aspect-ratio:9/16;border:1px solid rgba(255,255,255,.4);border-radius:18px;overflow:hidden;position:relative;
   background:url('hero-bg.jpg') center/cover;box-shadow:0 20px 50px rgba(0,0,0,.5);transform:rotate(3deg);transition:transform .45s var(--ease)}
@@ -201,15 +215,6 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .big-words{font-family:var(--font-display);font-weight:550;letter-spacing:-.025em;line-height:1.38;
   font-size:clamp(24px,3.1vw,46px);color:var(--fg);max-width:26ch}
 .statement-note{display:block;margin-top:32px;padding-top:22px;border-top:1px solid var(--border);font-size:13px;color:var(--soft);letter-spacing:.11em;text-transform:uppercase}
-
-/* ---------- Studio band ---------- */
-.band{position:relative;height:clamp(340px,56vh,560px);overflow:hidden;display:flex;align-items:center;justify-content:center}
-.band-img{position:absolute;inset:-12% 0;will-change:transform}
-.band-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.15)}
-.band::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg),rgba(5,8,15,.35) 30%,rgba(5,8,15,.35) 70%,var(--bg));z-index:1}
-.band-quote{position:relative;z-index:2;text-align:center;padding:0 20px}
-.band-quote p{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;font-size:clamp(26px,4.4vw,58px)}
-.band-quote span{display:block;margin-top:14px;color:var(--text);font-size:14.5px;letter-spacing:.14em;text-transform:uppercase}
 
 /* ---------- Team ---------- */
 .team{padding:clamp(90px,11vw,150px) clamp(20px,5vw,64px);position:relative}
@@ -240,6 +245,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .team-index{font-size:12px;color:var(--soft);letter-spacing:.12em}
 .team-switching .team-copy>*:not(.team-controls){animation:memberIn .5s var(--ease) both}
 @keyframes memberIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.statement>.team{padding:clamp(72px,8vw,110px) 0 0;margin-top:clamp(72px,8vw,110px);border-top:1px solid var(--border)}
 
 /* ---------- Work ---------- */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,30px)}
@@ -268,10 +274,11 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .project-body .tag{display:flex;align-items:center;gap:7px;margin-top:10px;font-size:12.5px;color:var(--soft)}
 .project-body .tag i{width:5px;height:5px;border-radius:50%;background:var(--blue-bright);flex:none}
 #work{display:none}
-#panel-editing>#work.embedded{display:block;padding:clamp(54px,7vw,86px) 0 0;margin-top:clamp(46px,6vw,72px);border-top:1px solid var(--border)}
-#panel-editing>#work .section-head{margin-bottom:32px}
-#panel-editing>#work .section-head h2{font-size:clamp(30px,4vw,52px)}
-#panel-editing>#work .work-grid{gap:18px}
+#work>.format-grid{margin:0 0 clamp(64px,8vw,100px)}
+#work .work-grid{gap:18px}
+#panel-editing>#work.embedded-portfolio{display:block;padding:clamp(54px,7vw,86px) 0 0;margin-top:clamp(46px,6vw,72px);border-top:1px solid var(--border)}
+#panel-editing>#work.embedded-portfolio .section-head{margin-bottom:34px}
+#panel-editing>#work.embedded-portfolio .section-head h2{font-size:clamp(30px,4vw,52px)}
 
 /* ---------- Reviews ---------- */
 .review-side{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
@@ -390,8 +397,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   .work-grid,.rev-grid{grid-template-columns:1fr}
   .project-body h3{min-height:0}
   .service-tabs{grid-template-columns:1fr}
-  .service-tab{min-height:116px;padding:19px}
-  .service-tab strong{margin-top:18px}
+  .service-tab{min-height:290px}
   .editing-panel{grid-template-columns:1fr}
   .format-grid{grid-template-columns:1fr}
   .team-shell{grid-template-columns:1fr}
@@ -412,6 +418,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   .marquee-track,.scroll-cue svg,.badge .pulse,.team-orbit,.team-progress i,.reel-frame,.caption-beat i{animation:none}
   .hero h1 .grad,.contact h2 a{animation:none}
   *,*::before,*::after{transition-duration:.01ms!important}
+  .service-cover{display:none}
 }
 </style>
 </head>
@@ -427,10 +434,8 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   </a>
   <div class="nav-right">
     <ul class="nav-links">
+      <li><a href="#about">Who Are We?</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#team">Meet the team</a></li>
-      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a class="nav-cta" href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Hire us</a>
@@ -447,7 +452,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
       <a class="btn btn-primary" data-magnetic href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Start your channel
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a class="btn btn-ghost" data-magnetic href="#team">Meet the team</a>
+      <a class="btn btn-ghost" data-magnetic href="#about">Who are we?</a>
     </div>
   </div>
   <p class="scroll-cue">Scroll
@@ -463,65 +468,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 </div>
 
 <main>
-<!-- ============ SERVICES ============ -->
-<section class="showcase" id="services">
-  <div class="show-head" data-reveal>
-    <h2>Choose a <span class="grad">service</span></h2>
-    <span class="count">Select an expertise to explore our work.</span>
-  </div>
-  <div class="service-tabs" role="tablist" aria-label="J2R Studio services" data-reveal>
-    <button class="service-tab" role="tab" id="tab-script" aria-controls="panel-script" aria-selected="false" data-service="script">
-      <span class="service-num">01</span><strong>Scriptwriting</strong><small>Research · Story · Retention</small><span class="arr" aria-hidden="true">↗</span>
-    </button>
-    <button class="service-tab" role="tab" id="tab-editing" aria-controls="panel-editing" aria-selected="true" data-service="editing">
-      <span class="service-num">02</span><strong>Video Editing</strong><small>Cinematic stories · Vertical reels</small><span class="arr" aria-hidden="true">↗</span>
-    </button>
-    <button class="service-tab" role="tab" id="tab-voice" aria-controls="panel-voice" aria-selected="false" data-service="voice">
-      <span class="service-num">03</span><strong>AI Voice-over</strong><small>Natural · Clear · Consistent</small><span class="arr" aria-hidden="true">↗</span>
-    </button>
-  </div>
-  <div class="service-panels">
-    <div class="service-panel" role="tabpanel" id="panel-script" aria-labelledby="tab-script" tabindex="0">
-      <div class="panel-empty" aria-label="Scriptwriting portfolio"></div>
-    </div>
-    <div class="service-panel active" role="tabpanel" id="panel-editing" aria-labelledby="tab-editing" tabindex="0">
-      <div class="editing-panel">
-        <div class="editing-intro">
-          <div>
-            <span class="eyebrow">Choose your format</span>
-            <h3>Made to hold attention.</h3>
-            <p>Two formats, one standard: purposeful pacing, clean storytelling, and edits designed around the way your audience watches.</p>
-          </div>
-        </div>
-        <div class="format-grid">
-          <a class="format-card" href="https://drive.google.com/drive/folders/1kBW0nQcmqvYaNd6vnn4BeIeWhiPGjv7-?usp=drive_link" target="_blank" rel="noopener" aria-label="Explore the long-form video portfolio">
-            <div class="format-media">
-              <img class="format-cover" src="longform-cover.jpg" alt="Cinematic montage representing whiteboard, sports, mystery, and Asian drama long-form editing">
-              <span class="format-ratio">16:9 · LONG FORM</span>
-              <span class="format-tags" aria-hidden="true"><span>Whiteboard</span><span>Sports</span><span>Mystery</span><span>Asian drama</span></span>
-              <span class="format-open" aria-hidden="true">↗</span>
-            </div>
-            <div class="format-body"><div><small>YouTube storytelling</small><strong>Stories with staying power</strong><p>Open the complete long-form reel</p></div><span class="format-number">01</span></div>
-          </a>
-          <a class="format-card" href="https://drive.google.com/drive/folders/1AGyI_QUCLgUiEx3C8SWjNXnICoyMTkvu?usp=drive_link" target="_blank" rel="noopener" aria-label="Explore the short-form video portfolio">
-            <div class="format-media short-media">
-              <img class="format-cover" src="shortform-cover.jpg" alt="Short-form editing montage representing UGC, automotive, rankings, entertainment, and business promotions">
-              <span class="format-ratio">9:16 · SHORT FORM</span>
-              <span class="format-tags" aria-hidden="true"><span>UGC</span><span>Automotive</span><span>Rankings</span><span>Business promos</span></span>
-              <span class="format-open" aria-hidden="true">↗</span>
-            </div>
-            <div class="format-body"><div><small>Vertical-first editing</small><strong>Fast hooks. Clean payoff.</strong><p>Open the complete short-form reel</p></div><span class="format-number">02</span></div>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="service-panel" role="tabpanel" id="panel-voice" aria-labelledby="tab-voice" tabindex="0">
-      <div class="panel-empty" aria-label="AI voice-over portfolio"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STATEMENT ============ -->
+<!-- ============ ABOUT & TEAM ============ -->
 <section class="statement" id="about">
   <div class="statement-grid">
     <div class="statement-label" data-reveal>
@@ -533,45 +480,98 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
       <span class="statement-note">Strategy · Storytelling · Editing · Delivery</span>
     </div>
   </div>
+
+  <section class="team" id="team">
+    <div class="team-shell">
+      <div class="team-visual" data-reveal>
+        <div class="team-orbit" aria-hidden="true"></div>
+        <div class="member-photo" id="memberPhoto"><img src="janiel-resma.jpg" alt="Janiel Resma at his video editing workstation"></div>
+      </div>
+      <div class="team-copy" id="teamCopy" data-reveal aria-live="polite">
+        <span class="eyebrow">Who are we?</span>
+        <h2 id="memberName">Janiel Resma</h2>
+        <span class="member-role" id="memberRole">Founder · Lead Video Editor · AI Voice-over</span>
+        <p class="member-bio" id="memberBio">With over four years of professional experience, Janiel leads every project from concept to final delivery. He specializes in faceless YouTube content across long-form and short-form formats, shaping edits around each client's voice, audience, and creative goals while keeping every delivery polished and on time.</p>
+        <div class="team-controls">
+          <button class="team-btn" id="teamPrev" aria-label="Previous team member">←</button>
+          <div class="team-progress" aria-hidden="true"><i id="teamTimer"></i></div>
+          <span class="team-index" id="teamIndex">01 / 02</span>
+          <button class="team-btn" id="teamNext" aria-label="Next team member">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
 </section>
 
-<!-- ============ STUDIO BAND ============ -->
-<div class="band" aria-hidden="false">
-  <div class="band-img"><img src="hero-bg.jpg" alt="J2R Studio editing desk at night"></div>
-  <div class="band-quote">
-    <p>Turning your vision into reality.</p>
-    <span>J2R Studio — Creative production team</span>
+<!-- ============ SERVICES ============ -->
+<section class="showcase" id="services">
+  <div class="show-head" data-reveal>
+    <h2>Services <span class="grad">we offer</span></h2>
+    <span class="count">Choose the support your channel needs.</span>
   </div>
-</div>
-
-<!-- ============ TEAM ============ -->
-<section class="team" id="team">
-  <div class="team-shell">
-    <div class="team-visual" data-reveal>
-      <div class="team-orbit" aria-hidden="true"></div>
-      <div class="member-photo" id="memberPhoto"><img src="janiel-resma.jpg" alt="Janiel Resma at his video editing workstation"></div>
+  <div class="service-tabs" role="tablist" aria-label="J2R Studio services" data-reveal>
+    <button class="service-tab" role="tab" id="tab-script" aria-controls="panel-script" aria-selected="false" data-service="script">
+      <video class="service-cover" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="scriptwriting-cover.m4v"></video>
+      <span class="service-content"><span class="service-num">01</span><span class="service-copy"><strong>Scriptwriting</strong><small>Research · Story · Retention</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
+    </button>
+    <button class="service-tab" role="tab" id="tab-editing" aria-controls="panel-editing" aria-selected="false" data-service="editing">
+      <video class="service-cover" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="video-editing-cover.m4v"></video>
+      <span class="service-content"><span class="service-num">02</span><span class="service-copy"><strong>Video Editing</strong><small>Cinematic stories · Vertical reels</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
+    </button>
+    <button class="service-tab" role="tab" id="tab-voice" aria-controls="panel-voice" aria-selected="false" data-service="voice">
+      <video class="service-cover" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="voiceover-cover.m4v"></video>
+      <span class="service-content"><span class="service-num">03</span><span class="service-copy"><strong>AI Voice-over</strong><small>Natural · Clear · Consistent</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
+    </button>
+  </div>
+  <div class="service-panels">
+    <div class="service-panel" role="tabpanel" id="panel-script" aria-labelledby="tab-script" tabindex="0">
+      <div class="service-detail">
+        <span class="eyebrow">Scriptwriting</span>
+        <h3>Scripts built to keep viewers watching.</h3>
+        <p>Research-led scripts with clear structure, natural pacing, and retention-focused storytelling tailored to your channel and audience.</p>
+        <a class="portfolio-cta" href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Request scriptwriting samples <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
-    <div class="team-copy" id="teamCopy" data-reveal aria-live="polite">
-      <span class="eyebrow">Meet the founders</span>
-      <h2 id="memberName">Janiel Resma</h2>
-      <span class="member-role" id="memberRole">Founder · Lead Video Editor · AI Voice-over</span>
-      <p class="member-bio" id="memberBio">With over four years of professional experience, Janiel leads every project from concept to final delivery. He specializes in faceless YouTube content across long-form and short-form formats, shaping edits around each client's voice, audience, and creative goals while keeping every delivery polished and on time.</p>
-      <div class="team-controls">
-        <button class="team-btn" id="teamPrev" aria-label="Previous team member">←</button>
-        <div class="team-progress" aria-hidden="true"><i id="teamTimer"></i></div>
-        <span class="team-index" id="teamIndex">01 / 02</span>
-        <button class="team-btn" id="teamNext" aria-label="Next team member">→</button>
+    <div class="service-panel" role="tabpanel" id="panel-editing" aria-labelledby="tab-editing" tabindex="0">
+      <div class="editing-panel">
+        <div class="editing-intro">
+          <div>
+            <span class="eyebrow">Video editing</span>
+            <h3>Made to hold attention.</h3>
+            <p>Two formats, one standard: purposeful pacing, clean storytelling, and edits designed around the way your audience watches.</p>
+            <a class="portfolio-cta" href="#work">Browse editing samples <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="service-panel" role="tabpanel" id="panel-voice" aria-labelledby="tab-voice" tabindex="0">
+      <div class="service-detail">
+        <span class="eyebrow">AI voice-over</span>
+        <h3>Clear delivery, consistent every time.</h3>
+        <p>Natural-sounding voice-over prepared for explainers, faceless videos, promotions, and other content that needs a dependable voice.</p>
+        <a class="portfolio-cta" href="https://drive.google.com/drive/folders/1NvoSVkdUSQ0N3QaTgZcUqiNDLC5gcGcr?usp=drive_link" target="_blank" rel="noopener">View voice-over portfolio <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ WORK LIST (awwwards) ============ -->
 <!-- ============ WORK ============ -->
 <section class="section" id="work">
   <div class="section-head" data-reveal>
-    <h2>Selected <span class="grad">niche edits</span></h2>
-    <span class="count">Nine handpicked long-form videos</span>
+    <h2>Video edit <span class="grad">samples</span></h2>
+    <span class="count">Long-form, short-form, and selected niche edits</span>
+  </div>
+  <div class="format-grid">
+    <a class="format-card portfolio-link-card" href="https://drive.google.com/drive/folders/1kBW0nQcmqvYaNd6vnn4BeIeWhiPGjv7-?usp=drive_link" target="_blank" rel="noopener" aria-label="View the long-form video portfolio">
+      <span class="portfolio-format-badge">16:9 · LONG FORM</span>
+      <span class="format-open" aria-hidden="true">↗</span>
+      <div class="format-body"><div><small>YouTube storytelling</small><strong>View our long-form portfolio</strong><p>Whiteboard · Sports · Mystery · Asian drama</p></div><span class="format-number">01</span></div>
+    </a>
+    <a class="format-card portfolio-link-card" href="https://drive.google.com/drive/folders/1AGyI_QUCLgUiEx3C8SWjNXnICoyMTkvu?usp=drive_link" target="_blank" rel="noopener" aria-label="View the short-form video portfolio">
+      <span class="portfolio-format-badge">9:16 · SHORT FORM</span>
+      <span class="format-open" aria-hidden="true">↗</span>
+      <div class="format-body"><div><small>Vertical-first editing</small><strong>View our short-form portfolio</strong><p>UGC · Automotive · Rankings · Business promotions</p></div><span class="format-number">02</span></div>
+    </a>
   </div>
   <div class="work-grid" id="workGrid">
     <a class="project" data-cat="dog" href="https://youtu.be/U762mhCluus" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/U762mhCluus/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/U762mhCluus/hqdefault.jpg'" alt="I wish I knew these BEFORE getting a Chihuahua — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>I wish I knew these BEFORE getting a Chihuahua</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
@@ -604,9 +604,9 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 </section>
 
 <!-- ============ REVIEWS ============ -->
-<section class="section" id="reviews" style="padding-top:0">
+<section class="section" id="reviews" hidden aria-hidden="true">
   <div class="section-head" data-reveal>
-    <h2>Trusted by <span class="grad">clients</span></h2>
+    <h2>Client testimonials <span class="grad">&amp; reviews</span></h2>
     <div class="review-side">
       <span class="count">Verified Upwork feedback and client recommendations</span>
       <a class="upwork-link" href="https://www.upwork.com/freelancers/~01613a8b3b7e3e8bf2?viewMode=1" target="_blank" rel="noopener">View verified profile ↗</a>
@@ -673,19 +673,19 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   <div class="section-head" data-reveal><h2>How it <span class="grad">works</span></h2></div>
   <div class="process-grid">
     <div data-reveal>
-      <p class="process-lede">We build YouTube channels that earn — <em>you bring the idea, we handle script to upload</em>.</p>
+      <p class="process-lede">A flexible production process — <em>built around your content, platform, and goals</em>.</p>
       <p class="process-body">
-        Whether you're starting from scratch or scaling an existing channel, J2R Studio
-        produces high-quality content built to attract viewers, grow your audience and
-        get you to YouTube monetization — without you touching an editing timeline.
+        Whether you need one polished video, a marketing campaign, or ongoing content,
+        J2R Studio supports creators, affiliates, and businesses from the first brief to
+        final delivery — with a clear workflow and dependable turnaround.
       </p>
     </div>
     <ul class="steps" data-reveal>
-      <li>Idea &amp; Script <span class="num">01</span></li>
-      <li>AI Voice-Over <span class="num">02</span></li>
-      <li>Edit &amp; Polish <span class="num">03</span></li>
-      <li>Upload-Ready Delivery <span class="num">04</span></li>
-      <li>Grow &amp; Monetize <span class="num">05</span></li>
+      <li>Creative Brief &amp; Strategy <span class="num">01</span></li>
+      <li>Script &amp; Content Plan <span class="num">02</span></li>
+      <li>Voice, Edit &amp; Production <span class="num">03</span></li>
+      <li>Review &amp; Revisions <span class="num">04</span></li>
+      <li>Final Delivery <span class="num">05</span></li>
     </ul>
   </div>
 </section>
@@ -738,14 +738,21 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   /* ---- Service switcher ---- */
   var serviceTabs=document.querySelectorAll('.service-tab');
   var servicePanels=document.querySelectorAll('.service-panel');
-  var workSection=document.getElementById('work'),editingService=document.getElementById('panel-editing');
-  if(workSection&&editingService){editingService.appendChild(workSection);workSection.classList.add('embedded')}
+  var workSection=document.getElementById('work');
+  var editingPanel=document.getElementById('panel-editing');
+  if(workSection&&editingPanel){editingPanel.appendChild(workSection);workSection.classList.add('embedded-portfolio')}
+  var serviceVideos=document.querySelectorAll('.service-cover');
+  serviceVideos.forEach(function(video){
+    if(reduced){video.pause();video.removeAttribute('autoplay')}
+    else{var playAttempt=video.play();if(playAttempt&&playAttempt.catch){playAttempt.catch(function(){})}}
+  });
   function selectService(tab){
     serviceTabs.forEach(function(t){t.setAttribute('aria-selected',t===tab?'true':'false')});
     servicePanels.forEach(function(panel){
       var active=panel.id==='panel-'+tab.dataset.service;
       panel.classList.toggle('active',active);panel.hidden=!active;
     });
+    requestAnimationFrame(function(){if(window.ScrollTrigger){ScrollTrigger.refresh()}});
   }
   serviceTabs.forEach(function(tab){
     tab.addEventListener('click',function(){selectService(tab)});
@@ -756,9 +763,6 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
       var next=list[(i+(e.key==='ArrowRight'?1:-1)+list.length)%list.length];
       next.focus();selectService(next);
     });
-  });
-  document.querySelectorAll('a[href="#work"]').forEach(function(link){
-    link.addEventListener('click',function(){selectService(document.getElementById('tab-editing'))});
   });
   servicePanels.forEach(function(panel){panel.hidden=!panel.classList.contains('active')});
 
@@ -945,12 +949,6 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     gsap.from(el,{opacity:0,y:16,duration:.45,ease:'power1.out',
       scrollTrigger:{trigger:el,start:'top 90%',toggleActions:'play none none reverse'}});
   });
-
-  /* ---- Studio band parallax ---- */
-  gsap.fromTo('.band-img',{yPercent:-10},{yPercent:10,ease:'none',
-    scrollTrigger:{trigger:'.band',start:'top bottom',end:'bottom top',scrub:true}});
-  gsap.from('.band-quote',{opacity:0,scale:.92,ease:'none',
-    scrollTrigger:{trigger:'.band',start:'top 70%',end:'center center',scrub:.5}});
 
   /* ============ PINNED SERVICES SHOWCASE ============ */
   var wave=document.getElementById('wave');
