@@ -136,10 +136,11 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .service-tab:hover{transform:translateY(-7px);border-color:var(--border-strong);box-shadow:0 32px 80px -46px var(--glow)}
 .service-tab[aria-selected="true"]{border-color:rgba(94,151,255,.88);box-shadow:0 32px 84px -44px var(--glow)}
 .service-tab[aria-selected="true"]::after{transform:scaleX(1)}
-.service-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;
+.service-cover,.service-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;
   pointer-events:none;filter:saturate(.88) brightness(.82);transform:scale(1.015);transition:transform .8s var(--ease),filter .45s}
+.service-poster{display:block}
 .service-cover::-webkit-media-controls,.service-cover::-webkit-media-controls-panel,.service-cover::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
-.service-tab:hover .service-cover,.service-tab[aria-selected="true"] .service-cover{transform:scale(1.07);filter:saturate(1.08) brightness(.96)}
+.service-tab:hover .service-cover,.service-tab:hover .service-poster,.service-tab[aria-selected="true"] .service-cover,.service-tab[aria-selected="true"] .service-poster{transform:scale(1.07);filter:saturate(1.08) brightness(.96)}
 .service-content{position:absolute;inset:0;z-index:2;padding:24px;display:flex;flex-direction:column;align-items:flex-start}
 .service-num{display:block;color:#fff;font-size:12px;font-weight:800;letter-spacing:.15em;padding:7px 10px;border-radius:999px;
   background:rgba(5,8,15,.55);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px)}
@@ -420,7 +421,6 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   .marquee-track,.scroll-cue svg,.badge .pulse,.team-orbit,.team-progress i,.reel-frame,.caption-beat i{animation:none}
   .hero h1 .grad,.contact h2 a{animation:none}
   *,*::before,*::after{transition-duration:.01ms!important}
-  .service-cover{display:none}
 }
 </style>
 </head>
@@ -515,15 +515,18 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   </div>
   <div class="service-tabs" role="tablist" aria-label="J2R Studio services" data-reveal>
     <button class="service-tab" role="tab" id="tab-script" aria-controls="panel-script" aria-selected="false" data-service="script">
-      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="none" poster="scriptwriting-poster.png" disablepictureinpicture aria-hidden="true"><source data-src="scriptwriting-cover.mp4" type="video/mp4"></video>
+      <img class="service-poster" src="scriptwriting-poster.png" alt="" width="404" height="720" decoding="async" aria-hidden="true">
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="scriptwriting-poster.png" disablepictureinpicture aria-hidden="true"><source src="scriptwriting-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">01</span><span class="service-copy"><strong>Scriptwriting</strong><small>Research · Story · Retention</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
     <button class="service-tab" role="tab" id="tab-editing" aria-controls="panel-editing" aria-selected="false" data-service="editing">
-      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="none" poster="video-editing-poster.png" disablepictureinpicture aria-hidden="true"><source data-src="video-editing-cover.mp4" type="video/mp4"></video>
+      <img class="service-poster" src="video-editing-poster.png" alt="" width="404" height="720" decoding="async" aria-hidden="true">
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="video-editing-poster.png" disablepictureinpicture aria-hidden="true"><source src="video-editing-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">02</span><span class="service-copy"><strong>Video Editing</strong><small>Cinematic stories · Vertical reels</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
     <button class="service-tab" role="tab" id="tab-voice" aria-controls="panel-voice" aria-selected="false" data-service="voice">
-      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="none" poster="voiceover-poster.png" disablepictureinpicture aria-hidden="true"><source data-src="voiceover-cover.mp4" type="video/mp4"></video>
+      <img class="service-poster" src="voiceover-poster.png" alt="" width="404" height="720" decoding="async" aria-hidden="true">
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="voiceover-poster.png" disablepictureinpicture aria-hidden="true"><source src="voiceover-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">03</span><span class="service-copy"><strong>AI Voice-over</strong><small>Natural · Clear · Consistent</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
   </div>
@@ -732,34 +735,19 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   var editingPanel=document.getElementById('panel-editing');
   if(workSection&&editingPanel){editingPanel.appendChild(workSection);workSection.classList.add('embedded-portfolio')}
   var serviceVideos=document.querySelectorAll('.service-cover');
-  var serviceVideosReady=false;
-  function startServiceVideos(){
+  function startServiceVideos(forcePlayback){
     serviceVideos.forEach(function(video){
       video.muted=true;video.defaultMuted=true;video.playsInline=true;
       video.setAttribute('muted','');video.setAttribute('playsinline','');video.setAttribute('webkit-playsinline','');
-      if(reduced){video.pause();video.removeAttribute('autoplay');return}
+      if(reduced&&!forcePlayback){video.pause();return}
       var playAttempt=video.play();if(playAttempt&&playAttempt.catch){playAttempt.catch(function(){})}
     });
   }
-  function loadServiceVideos(){
-    if(serviceVideosReady||reduced)return;
-    serviceVideosReady=true;
-    serviceVideos.forEach(function(video){
-      var source=video.querySelector('source[data-src]');
-      if(source){source.src=source.getAttribute('data-src');source.removeAttribute('data-src');video.load()}
-    });
-    startServiceVideos();
-  }
-  var servicesRoot=document.getElementById('services');
-  if('IntersectionObserver'in window&&servicesRoot){
-    var serviceLoader=new IntersectionObserver(function(entries){
-      if(entries[0].isIntersecting){loadServiceVideos();serviceLoader.disconnect()}
-    },{rootMargin:'420px 0px'});
-    serviceLoader.observe(servicesRoot);
-  }else{loadServiceVideos()}
-  document.addEventListener('touchstart',loadServiceVideos,{once:true,passive:true});
-  document.addEventListener('pointerdown',loadServiceVideos,{once:true,passive:true});
-  document.addEventListener('visibilitychange',function(){if(!document.hidden&&serviceVideosReady){startServiceVideos()}});
+  serviceVideos.forEach(function(video){video.addEventListener('canplay',function(){startServiceVideos(false)})});
+  startServiceVideos(false);
+  document.addEventListener('touchstart',function(){startServiceVideos(true)},{once:true,passive:true});
+  document.addEventListener('pointerdown',function(){startServiceVideos(true)},{once:true,passive:true});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden){startServiceVideos(false)}});
   function selectService(tab){
     serviceTabs.forEach(function(t){t.setAttribute('aria-selected',t===tab?'true':'false')});
     servicePanels.forEach(function(panel){
