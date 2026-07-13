@@ -298,10 +298,9 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .rev{border:1px solid var(--border);border-radius:20px;background:linear-gradient(160deg,rgba(23,40,74,.5),rgba(10,20,36,.5));
   backdrop-filter:blur(8px);padding:clamp(24px,2.3vw,34px);display:flex;flex-direction:column;gap:18px;
   transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
-.rev-grid .rev:nth-child(n+7){display:none}
 .rev.upwork{background:linear-gradient(155deg,rgba(20,168,0,.09),rgba(10,20,36,.62));border-color:rgba(20,168,0,.24)}
 .source{align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#14A800;
-  border:1px solid rgba(20,168,0,.32);background:rgba(20,168,0,.08);padding:5px 10px;border-radius:999px}
+  order:-1;border:1px solid rgba(20,168,0,.32);background:rgba(20,168,0,.08);padding:5px 10px;border-radius:999px}
 .source.facebook{color:var(--blue-bright);border-color:var(--border-strong);background:rgba(61,126,245,.08)}
 .rev:hover{transform:translateY(-5px);border-color:var(--border-strong);box-shadow:0 24px 60px -32px rgba(61,126,245,.45)}
 .stars{display:flex;gap:3px;color:#FFC94D}
@@ -399,6 +398,8 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   .project-body h3{min-height:0}
   .service-tabs{grid-template-columns:1fr}
   .service-tab{min-height:290px}
+  .hero-cta-row{width:100%;flex-direction:column;align-items:center;gap:11px}
+  .hero-cta-row .btn{width:min(100%,320px);justify-content:center}
   .editing-panel{grid-template-columns:1fr}
   .format-grid{grid-template-columns:1fr}
   .team-shell{grid-template-columns:1fr}
@@ -451,10 +452,11 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     <p class="badge"><span class="pulse" aria-hidden="true"></span>Creative Agency for YouTube Creators</p>
     <h1 id="heroTitle" aria-label="Turning your vision into reality.">Turning your <span class="grad">vision</span> into reality.</h1>
     <div class="hero-cta-row">
-      <a class="btn btn-primary" data-magnetic href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Start your channel
+      <a class="btn btn-ghost" data-magnetic href="#about">Who are we?</a>
+      <a class="btn btn-primary" data-magnetic data-open-portfolio href="#services">View portfolio
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a class="btn btn-ghost" data-magnetic href="#about">Who are we?</a>
+      <a class="btn btn-ghost" data-magnetic href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Message us</a>
     </div>
   </div>
   <p class="scroll-cue">Scroll
@@ -513,15 +515,15 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   </div>
   <div class="service-tabs" role="tablist" aria-label="J2R Studio services" data-reveal>
     <button class="service-tab" role="tab" id="tab-script" aria-controls="panel-script" aria-selected="false" data-service="script">
-      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-hidden="true"><source src="scriptwriting-cover.mp4" type="video/mp4"></video>
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="none" poster="scriptwriting-poster.png" disablepictureinpicture aria-hidden="true"><source data-src="scriptwriting-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">01</span><span class="service-copy"><strong>Scriptwriting</strong><small>Research · Story · Retention</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
     <button class="service-tab" role="tab" id="tab-editing" aria-controls="panel-editing" aria-selected="false" data-service="editing">
-      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-hidden="true"><source src="video-editing-cover.mp4" type="video/mp4"></video>
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="none" poster="video-editing-poster.png" disablepictureinpicture aria-hidden="true"><source data-src="video-editing-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">02</span><span class="service-copy"><strong>Video Editing</strong><small>Cinematic stories · Vertical reels</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
     <button class="service-tab" role="tab" id="tab-voice" aria-controls="panel-voice" aria-selected="false" data-service="voice">
-      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-hidden="true"><source src="voiceover-cover.mp4" type="video/mp4"></video>
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="none" poster="voiceover-poster.png" disablepictureinpicture aria-hidden="true"><source data-src="voiceover-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">03</span><span class="service-copy"><strong>AI Voice-over</strong><small>Natural · Clear · Consistent</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
   </div>
@@ -624,6 +626,12 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     <figure class="rev upwork" data-reveal>
       <span class="source">Verified Upwork</span>
       <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <blockquote>Great job.</blockquote>
+      <figcaption><span class="avatar" aria-hidden="true">U</span><span><b>Upwork client</b>Top 5 Videos</span></figcaption>
+    </figure>
+    <figure class="rev upwork" data-reveal>
+      <span class="source">Verified Upwork</span>
+      <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
       <blockquote>Janiel is a wonderful editor who I was proud to have on my team for over a year. During that time he edited dozens of great videos, many of which went viral. I highly recommend him.</blockquote>
       <figcaption><span class="avatar" aria-hidden="true">U</span><span><b>Upwork client</b>YouTube video editing</span></figcaption>
     </figure>
@@ -659,11 +667,13 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     </figure>
     <figure class="rev" data-reveal>
       <div class="stars" aria-label="5 star recommendation"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg></div>
+      <span class="source facebook">Facebook</span>
       <blockquote>Very happy with Janiel, the editing is perfect and he is listening to instructions, and applying them very fast. Also very polite and respectful. Overall I really recommend working with him!</blockquote>
       <figcaption><span class="avatar" aria-hidden="true">AL</span><span><b>Anastasiya Lex</b>recommends J2R Studios</span></figcaption>
     </figure>
     <figure class="rev" data-reveal>
       <div class="stars" aria-label="5 star recommendation"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.2 4.9 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.5l7-.9z"/></svg></div>
+      <span class="source facebook">Facebook</span>
       <blockquote>Janiel is great to work with! Understands new ideas, feedback &amp; always looking for ways to get better! Overall, I recommend working with him.</blockquote>
       <figcaption><span class="avatar" aria-hidden="true">TW</span><span><b>The Wrangler</b>recommends J2R Studios</span></figcaption>
     </figure>
@@ -722,6 +732,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   var editingPanel=document.getElementById('panel-editing');
   if(workSection&&editingPanel){editingPanel.appendChild(workSection);workSection.classList.add('embedded-portfolio')}
   var serviceVideos=document.querySelectorAll('.service-cover');
+  var serviceVideosReady=false;
   function startServiceVideos(){
     serviceVideos.forEach(function(video){
       video.muted=true;video.defaultMuted=true;video.playsInline=true;
@@ -730,10 +741,25 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
       var playAttempt=video.play();if(playAttempt&&playAttempt.catch){playAttempt.catch(function(){})}
     });
   }
-  startServiceVideos();
-  document.addEventListener('touchstart',startServiceVideos,{once:true,passive:true});
-  document.addEventListener('pointerdown',startServiceVideos,{once:true,passive:true});
-  document.addEventListener('visibilitychange',function(){if(!document.hidden){startServiceVideos()}});
+  function loadServiceVideos(){
+    if(serviceVideosReady||reduced)return;
+    serviceVideosReady=true;
+    serviceVideos.forEach(function(video){
+      var source=video.querySelector('source[data-src]');
+      if(source){source.src=source.getAttribute('data-src');source.removeAttribute('data-src');video.load()}
+    });
+    startServiceVideos();
+  }
+  var servicesRoot=document.getElementById('services');
+  if('IntersectionObserver'in window&&servicesRoot){
+    var serviceLoader=new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting){loadServiceVideos();serviceLoader.disconnect()}
+    },{rootMargin:'420px 0px'});
+    serviceLoader.observe(servicesRoot);
+  }else{loadServiceVideos()}
+  document.addEventListener('touchstart',loadServiceVideos,{once:true,passive:true});
+  document.addEventListener('pointerdown',loadServiceVideos,{once:true,passive:true});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&serviceVideosReady){startServiceVideos()}});
   function selectService(tab){
     serviceTabs.forEach(function(t){t.setAttribute('aria-selected',t===tab?'true':'false')});
     servicePanels.forEach(function(panel){
@@ -753,6 +779,15 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     });
   });
   servicePanels.forEach(function(panel){panel.hidden=!panel.classList.contains('active')});
+  var portfolioLauncher=document.querySelector('[data-open-portfolio]');
+  if(portfolioLauncher){
+    portfolioLauncher.addEventListener('click',function(e){
+      e.preventDefault();
+      var editingTab=document.getElementById('tab-editing');
+      if(editingTab){selectService(editingTab)}
+      setTimeout(function(){if(workSection){workSection.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'})}},80);
+    });
+  }
 
   /* ---- Team carousel: automatic and manually controlled ---- */
   var members=[
@@ -904,7 +939,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     }catch(e){/* WebGL unavailable — CSS glows still show */}
   }
 
-  if(reduced||typeof gsap==='undefined')return; // no-JS / reduced-motion: everything stays visible
+  if(reduced||typeof gsap==='undefined'||typeof ScrollTrigger==='undefined')return; // core content stays visible without animation libraries
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -912,29 +947,13 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   gsap.to('.progress',{scaleX:1,ease:'none',
     scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:.3}});
 
-  /* ---- Hero entrance ---- */
-  var h1=document.getElementById('heroTitle'),words=[];
-  h1.childNodes.forEach(function(n){
-    if(n.nodeType===3){n.textContent.split(/(\s+)/).forEach(function(w){if(w)words.push(document.createTextNode(w))})}
-    else words.push(n);
-  });
-  h1.textContent='';
-  words.forEach(function(w){
-    var s=document.createElement('span');s.className='char';s.setAttribute('aria-hidden','true');
-    s.appendChild(w);h1.appendChild(s);
-  });
-  gsap.from('#heroTitle .char',{yPercent:70,opacity:0,duration:.8,stagger:.055,ease:'expo.out',delay:.15});
-  gsap.from('.badge',{opacity:0,y:-12,duration:.5,ease:'power1.out'});
-  gsap.from('.hero-cta-row,.scroll-cue',{opacity:0,y:16,duration:.55,stagger:.1,ease:'power1.out',delay:.5});
-  /* hero exit scrub (Apple-style settle) */
-  gsap.to('.hero-inner',{yPercent:-10,autoAlpha:.25,ease:'none',
-    scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 35%',scrub:.6}});
+  /* ---- Hero background depth; text and buttons remain immediately visible ---- */
   gsap.to('.hero-photo',{yPercent:8,ease:'none',
     scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 
   /* ---- Generic reveals ---- */
   gsap.utils.toArray('[data-reveal]').forEach(function(el){
-    gsap.from(el,{opacity:0,y:16,duration:.45,ease:'power1.out',
+    gsap.from(el,{y:16,duration:.4,ease:'power1.out',
       scrollTrigger:{trigger:el,start:'top 90%',toggleActions:'play none none reverse'}});
   });
 
