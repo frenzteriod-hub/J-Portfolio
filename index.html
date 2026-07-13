@@ -138,6 +138,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .service-tab[aria-selected="true"]::after{transform:scaleX(1)}
 .service-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;
   pointer-events:none;filter:saturate(.88) brightness(.82);transform:scale(1.015);transition:transform .8s var(--ease),filter .45s}
+.service-cover::-webkit-media-controls,.service-cover::-webkit-media-controls-panel,.service-cover::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
 .service-tab:hover .service-cover,.service-tab[aria-selected="true"] .service-cover{transform:scale(1.07);filter:saturate(1.08) brightness(.96)}
 .service-content{position:absolute;inset:0;z-index:2;padding:24px;display:flex;flex-direction:column;align-items:flex-start}
 .service-num{display:block;color:#fff;font-size:12px;font-weight:800;letter-spacing:.15em;padding:7px 10px;border-radius:999px;
@@ -436,6 +437,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     <ul class="nav-links">
       <li><a href="#about">Who Are We?</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a class="nav-cta" href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Hire us</a>
@@ -511,15 +513,15 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   </div>
   <div class="service-tabs" role="tablist" aria-label="J2R Studio services" data-reveal>
     <button class="service-tab" role="tab" id="tab-script" aria-controls="panel-script" aria-selected="false" data-service="script">
-      <video class="service-cover" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="scriptwriting-cover.m4v"></video>
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-hidden="true"><source src="scriptwriting-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">01</span><span class="service-copy"><strong>Scriptwriting</strong><small>Research · Story · Retention</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
     <button class="service-tab" role="tab" id="tab-editing" aria-controls="panel-editing" aria-selected="false" data-service="editing">
-      <video class="service-cover" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="video-editing-cover.m4v"></video>
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-hidden="true"><source src="video-editing-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">02</span><span class="service-copy"><strong>Video Editing</strong><small>Cinematic stories · Vertical reels</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
     <button class="service-tab" role="tab" id="tab-voice" aria-controls="panel-voice" aria-selected="false" data-service="voice">
-      <video class="service-cover" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="voiceover-cover.m4v"></video>
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-hidden="true"><source src="voiceover-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">03</span><span class="service-copy"><strong>AI Voice-over</strong><small>Natural · Clear · Consistent</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
   </div>
@@ -604,7 +606,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 </section>
 
 <!-- ============ REVIEWS ============ -->
-<section class="section" id="reviews" hidden aria-hidden="true">
+<section class="section" id="reviews" style="padding-top:0">
   <div class="section-head" data-reveal>
     <h2>Client testimonials <span class="grad">&amp; reviews</span></h2>
     <div class="review-side">
@@ -668,28 +670,6 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   </div>
 </section>
 
-<!-- ============ PROCESS ============ -->
-<section class="section process" id="how">
-  <div class="section-head" data-reveal><h2>How it <span class="grad">works</span></h2></div>
-  <div class="process-grid">
-    <div data-reveal>
-      <p class="process-lede">A flexible production process — <em>built around your content, platform, and goals</em>.</p>
-      <p class="process-body">
-        Whether you need one polished video, a marketing campaign, or ongoing content,
-        J2R Studio supports creators, affiliates, and businesses from the first brief to
-        final delivery — with a clear workflow and dependable turnaround.
-      </p>
-    </div>
-    <ul class="steps" data-reveal>
-      <li>Creative Brief &amp; Strategy <span class="num">01</span></li>
-      <li>Script &amp; Content Plan <span class="num">02</span></li>
-      <li>Voice, Edit &amp; Production <span class="num">03</span></li>
-      <li>Review &amp; Revisions <span class="num">04</span></li>
-      <li>Final Delivery <span class="num">05</span></li>
-    </ul>
-  </div>
-</section>
-
 <!-- ============ CONTACT ============ -->
 <section class="section contact light" id="contact">
   <p class="kicker" data-reveal>Ready to get started?</p>
@@ -742,10 +722,18 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   var editingPanel=document.getElementById('panel-editing');
   if(workSection&&editingPanel){editingPanel.appendChild(workSection);workSection.classList.add('embedded-portfolio')}
   var serviceVideos=document.querySelectorAll('.service-cover');
-  serviceVideos.forEach(function(video){
-    if(reduced){video.pause();video.removeAttribute('autoplay')}
-    else{var playAttempt=video.play();if(playAttempt&&playAttempt.catch){playAttempt.catch(function(){})}}
-  });
+  function startServiceVideos(){
+    serviceVideos.forEach(function(video){
+      video.muted=true;video.defaultMuted=true;video.playsInline=true;
+      video.setAttribute('muted','');video.setAttribute('playsinline','');video.setAttribute('webkit-playsinline','');
+      if(reduced){video.pause();video.removeAttribute('autoplay');return}
+      var playAttempt=video.play();if(playAttempt&&playAttempt.catch){playAttempt.catch(function(){})}
+    });
+  }
+  startServiceVideos();
+  document.addEventListener('touchstart',startServiceVideos,{once:true,passive:true});
+  document.addEventListener('pointerdown',startServiceVideos,{once:true,passive:true});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden){startServiceVideos()}});
   function selectService(tab){
     serviceTabs.forEach(function(t){t.setAttribute('aria-selected',t===tab?'true':'false')});
     servicePanels.forEach(function(panel){
