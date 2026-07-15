@@ -212,10 +212,10 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .statement-label{position:sticky;top:130px}
 .statement-label .eyebrow{display:flex;align-items:center;gap:10px}
 .statement-label .eyebrow::before{content:"";width:34px;height:1px;background:var(--blue-bright)}
-.statement h2{font-family:var(--font-display);font-size:clamp(52px,7vw,104px);font-weight:800;letter-spacing:-.055em;line-height:.9;margin-top:24px}
+.statement h2{font-family:var(--font-display);font-size:clamp(38px,5vw,72px);font-weight:800;letter-spacing:-.05em;line-height:.95;margin-top:24px}
 .statement h2 span{color:transparent;-webkit-text-stroke:1.5px rgba(148,178,235,.7)}
-.big-words{font-family:var(--font-display);font-weight:550;letter-spacing:-.025em;line-height:1.38;
-  font-size:clamp(24px,3.1vw,46px);color:var(--fg);max-width:26ch}
+.big-words{font-family:var(--font-display);font-weight:550;letter-spacing:-.02em;line-height:1.5;
+  font-size:clamp(18px,2.1vw,30px);color:var(--fg);max-width:38ch}
 .statement-note{display:block;margin-top:32px;padding-top:22px;border-top:1px solid var(--border);font-size:13px;color:var(--soft);letter-spacing:.11em;text-transform:uppercase}
 
 /* ---------- Team ---------- */
@@ -249,6 +249,22 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 @keyframes memberIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .statement>.team{padding:clamp(72px,8vw,110px) 0 0;margin-top:clamp(72px,8vw,110px);border-top:1px solid var(--border)}
 
+/* ---------- Tools & software ---------- */
+.tools-stack{padding:clamp(76px,9vw,118px) clamp(20px,5vw,64px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(9,20,39,.88),rgba(5,8,15,.96))}
+.tools-stack::before{content:"";position:absolute;width:380px;height:380px;border-radius:50%;right:-130px;top:-180px;background:var(--blue);opacity:.12;filter:blur(110px)}
+.tools-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:34px;position:relative}
+.tools-head h2{font-family:var(--font-display);font-size:clamp(34px,5vw,62px);letter-spacing:-.04em;margin-top:10px}
+.tools-head p{max-width:40ch;color:var(--soft);font-size:13px;line-height:1.6;text-align:right}
+.tools-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;position:relative}
+.tool-card{display:flex;align-items:center;gap:16px;min-height:112px;padding:20px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,rgba(18,35,65,.7),rgba(8,17,32,.72));transition:transform .35s var(--ease),border-color .3s,box-shadow .3s}
+.tool-card:hover{transform:translateY(-5px);border-color:var(--border-strong);box-shadow:0 24px 62px -38px var(--glow)}
+.tool-logo{width:60px;height:60px;flex:none;display:grid;place-items:center;border:1px solid rgba(255,255,255,.13);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.tool-logo img{width:100%;height:100%;object-fit:contain}
+.tool-card.capcut .tool-logo img{width:38px;height:38px}
+.tool-card.premiere .tool-logo img,.tool-card.storyblocks .tool-logo img,.tool-card.canva .tool-logo img{object-fit:cover}
+.tool-copy strong{display:block;font-family:var(--font-display);font-size:17px;letter-spacing:-.015em}
+.tool-copy small{display:block;margin-top:5px;color:var(--soft);font-size:11px;line-height:1.45;text-transform:uppercase;letter-spacing:.09em}
+
 /* ---------- Work ---------- */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,30px)}
 .niche-showcase{display:grid;gap:clamp(58px,7vw,88px)}
@@ -281,20 +297,51 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 #panel-editing>#work.embedded-portfolio{display:block;padding:clamp(54px,7vw,86px) 0 0;margin-top:clamp(46px,6vw,72px);border-top:1px solid var(--border)}
 #panel-editing>#work.embedded-portfolio .section-head{margin-bottom:34px}
 #panel-editing>#work.embedded-portfolio .section-head h2{font-size:clamp(30px,4vw,52px)}
+.drive-portfolio{display:grid;gap:34px;margin-bottom:clamp(68px,8vw,104px)}
+.drive-format-switch{display:inline-flex;align-items:center;gap:8px;width:max-content;padding:6px;border:1px solid var(--border);border-radius:999px;background:rgba(7,15,29,.72)}
+.drive-format-btn{display:flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;color:var(--text);font-size:13px;font-weight:750;transition:background .25s,color .25s,transform .25s}
+.drive-format-btn span{display:grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:rgba(122,162,255,.12);font-size:10px}
+.drive-format-btn:hover{color:#fff;transform:translateY(-1px)}
+.drive-format-btn[aria-selected="true"]{background:var(--blue);color:#fff;box-shadow:0 14px 34px -20px var(--glow)}
+.drive-panel[hidden]{display:none}
+.drive-panel{display:grid;gap:clamp(44px,6vw,72px)}
+.drive-collection{display:grid;gap:20px}
+.drive-collection-head{display:flex;align-items:end;justify-content:space-between;gap:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.drive-collection-head h3{font-family:var(--font-display);font-size:clamp(23px,2.8vw,36px);letter-spacing:-.03em}
+.drive-collection-head p{color:var(--soft);font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+.drive-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.drive-video-grid.short-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.drive-video-card{display:flex;flex-direction:column;height:100%;width:100%;text-align:left;border:1px solid var(--border);border-radius:18px;overflow:hidden;background:var(--panel);transition:transform .35s var(--ease),border-color .3s,box-shadow .3s}
+.drive-video-card:hover{transform:translateY(-5px);border-color:var(--border-strong);box-shadow:0 28px 68px -36px rgba(61,126,245,.62)}
+.drive-video-thumb{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(145deg,#14284d,#07101f)}
+.drive-video-card.is-short .drive-video-thumb{aspect-ratio:9/16}
+.drive-video-thumb::before{content:"";position:absolute;inset:-22px;background-image:var(--drive-thumb);background-position:center;background-size:cover;filter:blur(22px) brightness(.46) saturate(.9);transform:scale(1.08);opacity:.9}
+.drive-video-thumb img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s var(--ease),filter .35s}
+.drive-video-card.is-short .drive-video-thumb img{object-fit:contain}
+.drive-video-card:hover .drive-video-thumb img{transform:scale(1.045);filter:saturate(1.08)}
+.drive-video-thumb::after{content:"";position:absolute;z-index:2;inset:0;background:linear-gradient(180deg,transparent 32%,rgba(5,8,15,.52));pointer-events:none}
+.drive-play{position:absolute;z-index:3;inset:0;display:grid;place-items:center}
+.drive-play i{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.94);color:#081326;font-style:normal;font-size:20px;box-shadow:0 18px 50px rgba(0,0,0,.38);transition:transform .3s var(--ease),background .25s,color .25s}
+.drive-video-card:hover .drive-play i{transform:scale(1.1);background:var(--blue-bright);color:#fff}
+.drive-video-copy{display:flex;flex:1;flex-direction:column;padding:16px 17px 18px}
+.drive-video-copy strong{display:block;font-family:var(--font-display);font-size:14.5px;line-height:1.42;min-height:2.84em}
+.drive-video-copy small{display:block;margin-top:auto;padding-top:10px;color:var(--blue-bright);font-size:10px;font-weight:750;letter-spacing:.12em;text-transform:uppercase}
+.drive-video-modal{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;padding:clamp(14px,3vw,32px)}
+.drive-video-modal[hidden]{display:none}
+.drive-modal-backdrop{position:absolute;inset:0;border:0;background:rgba(2,5,11,.88);backdrop-filter:blur(14px)}
+.drive-modal-dialog{position:relative;z-index:1;width:min(1120px,100%);max-height:calc(100vh - 28px);overflow:auto;border:1px solid var(--border-strong);border-radius:24px;background:#07101f;box-shadow:0 42px 120px rgba(0,0,0,.72)}
+.drive-modal-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 18px;border-bottom:1px solid var(--border)}
+.drive-modal-head h3{font-family:var(--font-display);font-size:clamp(15px,2vw,21px);line-height:1.35}
+.drive-modal-close{width:42px;height:42px;flex:none;border:1px solid var(--border-strong);border-radius:50%;display:grid;place-items:center;font-size:22px;transition:background .25s,transform .25s}
+.drive-modal-close:hover{background:var(--blue);transform:rotate(5deg)}
+.drive-player{width:100%;aspect-ratio:16/9;border:0;display:block;background:#02050b}
+.drive-modal-dialog.is-short{width:min(520px,100%)}
+.drive-modal-dialog.is-short .drive-player{aspect-ratio:9/16}
+.published-divider{display:flex;align-items:end;justify-content:space-between;gap:28px;margin:0 0 34px;padding:clamp(32px,5vw,58px) 0 24px;border-top:1px solid var(--border)}
+.published-divider h3{font-family:var(--font-display);font-size:clamp(28px,4vw,50px);letter-spacing:-.035em;margin-top:9px}
+.published-divider p{max-width:42ch;text-align:right;color:var(--soft);font-size:11px;line-height:1.6;letter-spacing:.12em;text-transform:uppercase}
 
 /* ---------- Reviews ---------- */
-.review-side{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.review-side .count{font-size:13px}
-.upwork-link{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--border-strong);border-radius:999px;
-  font-size:13px;font-weight:650;transition:background .25s,border-color .25s,transform .25s}
-.upwork-link:hover{background:#14A800;border-color:#14A800;transform:translateY(-2px)}
-.trust-strip{display:grid;grid-template-columns:1.25fr repeat(3,1fr);border:1px solid var(--border);border-radius:20px;overflow:hidden;
-  margin-top:-18px;margin-bottom:32px;background:rgba(10,20,38,.58)}
-.trust-item{padding:20px 24px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;min-height:90px}
-.trust-item:last-child{border-right:0}
-.trust-item b{font-family:var(--font-display);font-size:clamp(21px,2.2vw,31px);letter-spacing:-.03em}
-.trust-item span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-top:3px}
-.trust-item.upwork b{color:#14A800;font-size:20px;letter-spacing:-.01em}
 .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .rev{border:1px solid var(--border);border-radius:20px;background:linear-gradient(160deg,rgba(23,40,74,.5),rgba(10,20,36,.5));
   backdrop-filter:blur(8px);padding:clamp(24px,2.3vw,34px);display:flex;flex-direction:column;gap:18px;
@@ -390,6 +437,8 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 @media (max-width:1024px){
   .process-grid{grid-template-columns:1fr}
   .work-grid{grid-template-columns:1fr 1fr}
+  .drive-video-grid.short-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .team-shell{grid-template-columns:.85fr 1.15fr;gap:32px}
   .rev-grid{grid-template-columns:1fr 1fr}
 }
@@ -403,14 +452,20 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   .hero-cta-row .btn{width:min(100%,320px);justify-content:center}
   .editing-panel{grid-template-columns:1fr}
   .format-grid{grid-template-columns:1fr}
+  .drive-format-switch{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .drive-format-btn{justify-content:center;padding:11px 13px}
+  .drive-video-grid{grid-template-columns:1fr}
+  .drive-video-grid.short-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .drive-collection-head{align-items:start;flex-direction:column;gap:5px}
+  .published-divider{align-items:start;flex-direction:column;gap:12px}
+  .published-divider p{text-align:left}
+  .tools-head{align-items:start;flex-direction:column;gap:8px}
+  .tools-head p{text-align:left}
+  .tools-grid{grid-template-columns:1fr}
   .team-shell{grid-template-columns:1fr}
   .team-visual{min-height:420px}
   .team-orbit{width:min(88vw,420px)}
   .team-copy{min-height:0}
-  .trust-strip{grid-template-columns:1fr 1fr}
-  .trust-item{border-bottom:1px solid var(--border)}
-  .trust-item:nth-child(2){border-right:0}
-  .trust-item:nth-child(n+3){border-bottom:0}
   .statement-grid{grid-template-columns:1fr}
   .statement-label{position:relative;top:auto}
   .niche-head{align-items:start;flex-direction:column;gap:5px}
@@ -436,7 +491,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   </a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#about">Who Are We?</a></li>
+      <li><a href="#about">About Us</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -452,7 +507,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     <p class="badge"><span class="pulse" aria-hidden="true"></span>Creative Agency for YouTube Creators</p>
     <h1 id="heroTitle" aria-label="Turning your vision into reality.">Turning your <span class="grad">vision</span> into reality.</h1>
     <div class="hero-cta-row">
-      <a class="btn btn-ghost" data-magnetic href="#about">Who are we?</a>
+      <a class="btn btn-ghost" data-magnetic href="#about">About us</a>
       <a class="btn btn-primary" data-magnetic data-open-portfolio href="#services">View portfolio
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -477,7 +532,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   <div class="statement-grid">
     <div class="statement-label" data-reveal>
       <span class="eyebrow">Studio profile</span>
-      <h2>Who<br><span>are we?</span></h2>
+      <h2>About<br><span>us.</span></h2>
     </div>
     <div data-reveal>
       <p class="big-words">We are a team of experienced video editors and scriptwriters dedicated to helping content creators and businesses overcome marketing challenges. By producing high-quality, engaging content with fast turnaround times, we help strengthen your online presence, grow your audience, and reach more customers.</p>
@@ -492,7 +547,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
         <div class="member-photo" id="memberPhoto"><img src="janiel-resma.jpg" alt="Janiel Resma at his video editing workstation"></div>
       </div>
       <div class="team-copy" id="teamCopy" data-reveal aria-live="polite">
-        <span class="eyebrow">Who are we?</span>
+        <span class="eyebrow">Meet the team</span>
         <h2 id="memberName">Janiel Resma</h2>
         <span class="member-role" id="memberRole">Founder · Lead Video Editor · AI Voice-over</span>
         <p class="member-bio" id="memberBio">With over four years of professional experience, Janiel leads every project from concept to final delivery. He specializes in faceless YouTube content across long-form and short-form formats, shaping edits around each client's voice, audience, and creative goals while keeping every delivery polished and on time.</p>
@@ -516,17 +571,17 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   <div class="service-tabs" role="tablist" aria-label="J2R Studio services" data-reveal>
     <button class="service-tab" role="tab" id="tab-script" aria-controls="panel-script" aria-selected="false" data-service="script">
       <img class="service-poster" src="scriptwriting-poster.png" alt="" width="404" height="720" decoding="async" aria-hidden="true">
-      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="scriptwriting-poster.png" disablepictureinpicture aria-hidden="true"><source src="scriptwriting-cover.mp4" type="video/mp4"></video>
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="scriptwriting-poster.png" disablepictureinpicture aria-hidden="true"><source src="scriptwriting-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">01</span><span class="service-copy"><strong>Scriptwriting</strong><small>Research · Story · Retention</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
     <button class="service-tab" role="tab" id="tab-editing" aria-controls="panel-editing" aria-selected="false" data-service="editing">
       <img class="service-poster" src="video-editing-poster.png" alt="" width="404" height="720" decoding="async" aria-hidden="true">
-      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="video-editing-poster.png" disablepictureinpicture aria-hidden="true"><source src="video-editing-cover.mp4" type="video/mp4"></video>
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="video-editing-poster.png" disablepictureinpicture aria-hidden="true"><source src="video-editing-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">02</span><span class="service-copy"><strong>Video Editing</strong><small>Cinematic stories · Vertical reels</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
     <button class="service-tab" role="tab" id="tab-voice" aria-controls="panel-voice" aria-selected="false" data-service="voice">
       <img class="service-poster" src="voiceover-poster.png" alt="" width="404" height="720" decoding="async" aria-hidden="true">
-      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="voiceover-poster.png" disablepictureinpicture aria-hidden="true"><source src="voiceover-cover.mp4" type="video/mp4"></video>
+      <video class="service-cover" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="voiceover-poster.png" disablepictureinpicture aria-hidden="true"><source src="voiceover-cover.mp4" type="video/mp4"></video>
       <span class="service-content"><span class="service-num">03</span><span class="service-copy"><strong>AI Voice-over</strong><small>Natural · Clear · Consistent</small><span class="service-view">View portfolio <span aria-hidden="true">↗</span></span></span></span>
     </button>
   </div>
@@ -568,17 +623,17 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     <h2>Video edit <span class="grad">samples</span></h2>
     <span class="count">Long-form, short-form, and selected niche edits</span>
   </div>
-  <div class="format-grid">
-    <a class="format-card portfolio-link-card" href="https://drive.google.com/drive/folders/1kBW0nQcmqvYaNd6vnn4BeIeWhiPGjv7-?usp=drive_link" target="_blank" rel="noopener" aria-label="View the long-form video portfolio">
-      <span class="portfolio-format-badge">16:9 · LONG FORM</span>
-      <span class="format-open" aria-hidden="true">↗</span>
-      <div class="format-body"><div><small>YouTube storytelling</small><strong>View our long-form portfolio</strong><p>Whiteboard · Sports · Mystery · Asian drama</p></div><span class="format-number">01</span></div>
-    </a>
-    <a class="format-card portfolio-link-card" href="https://drive.google.com/drive/folders/1AGyI_QUCLgUiEx3C8SWjNXnICoyMTkvu?usp=drive_link" target="_blank" rel="noopener" aria-label="View the short-form video portfolio">
-      <span class="portfolio-format-badge">9:16 · SHORT FORM</span>
-      <span class="format-open" aria-hidden="true">↗</span>
-      <div class="format-body"><div><small>Vertical-first editing</small><strong>View our short-form portfolio</strong><p>UGC · Automotive · Rankings · Business promotions</p></div><span class="format-number">02</span></div>
-    </a>
+  <div class="drive-portfolio" id="drivePortfolio">
+    <div class="drive-format-switch" role="tablist" aria-label="Choose a video format">
+      <button class="drive-format-btn" type="button" role="tab" id="driveLongTab" aria-controls="driveLongPanel" aria-selected="true" data-drive-format="long">Long-form <span>9</span></button>
+      <button class="drive-format-btn" type="button" role="tab" id="driveShortTab" aria-controls="driveShortPanel" aria-selected="false" data-drive-format="short">Short-form <span>9</span></button>
+    </div>
+    <div class="drive-panel" id="driveLongPanel" role="tabpanel" aria-labelledby="driveLongTab"></div>
+    <div class="drive-panel" id="driveShortPanel" role="tabpanel" aria-labelledby="driveShortTab" hidden></div>
+  </div>
+  <div class="published-divider" data-reveal>
+    <div><span class="eyebrow">Published channel work</span><h3>Selected niche edits</h3></div>
+    <p>Dog videos · Horror &amp; supernatural · Sheridan Universe</p>
   </div>
   <div class="work-grid" id="workGrid">
     <a class="project" data-cat="dog" href="https://youtu.be/U762mhCluus" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/U762mhCluus/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/U762mhCluus/hqdefault.jpg'" alt="I wish I knew these BEFORE getting a Chihuahua — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>I wish I knew these BEFORE getting a Chihuahua</h3><span class="tag"><i></i>The Smart Canine · Dog Videos</span></div></a>
@@ -610,20 +665,37 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   </div>
 </section>
 
+<div class="drive-video-modal" id="driveVideoModal" role="dialog" aria-modal="true" aria-labelledby="driveVideoTitle" hidden>
+  <button class="drive-modal-backdrop" type="button" data-close-drive-video aria-label="Close video player"></button>
+  <div class="drive-modal-dialog" role="document">
+    <div class="drive-modal-head">
+      <h3 id="driveVideoTitle">Video sample</h3>
+      <button class="drive-modal-close" type="button" data-close-drive-video aria-label="Close video player">×</button>
+    </div>
+    <iframe class="drive-player" id="driveVideoPlayer" title="J2R Studio video sample" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- ============ TOOLS & SOFTWARE ============ -->
+<section class="tools-stack" id="tools">
+  <div class="tools-head" data-reveal>
+    <div><span class="eyebrow">Production stack</span><h2>Tools <span class="grad">&amp; software</span></h2></div>
+    <p>The professional platforms we use across scripting, production, editing, voice, graphics, and licensed media.</p>
+  </div>
+  <div class="tools-grid">
+    <article class="tool-card capcut" data-reveal><span class="tool-logo"><img src="tool-capcut.png" alt="CapCut logo" width="64" height="64" loading="lazy"></span><span class="tool-copy"><strong>CapCut Pro</strong><small>Short-form editing</small></span></article>
+    <article class="tool-card premiere" data-reveal><span class="tool-logo"><img src="tool-premiere-pro.png" alt="Adobe Premiere Pro logo" width="173" height="190" loading="lazy"></span><span class="tool-copy"><strong>Premiere Pro</strong><small>Professional video editing</small></span></article>
+    <article class="tool-card elevenlabs" data-reveal><span class="tool-logo"><img src="tool-elevenlabs.png" alt="ElevenLabs logo" width="32" height="32" loading="lazy"></span><span class="tool-copy"><strong>ElevenLabs</strong><small>AI voice production</small></span></article>
+    <article class="tool-card storyblocks" data-reveal><span class="tool-logo"><img src="tool-storyblocks.png" alt="Storyblocks logo" width="200" height="200" loading="lazy"></span><span class="tool-copy"><strong>Storyblocks</strong><small>Licensed stock media</small></span></article>
+    <article class="tool-card canva" data-reveal><span class="tool-logo"><img src="tool-canva.png" alt="Canva logo" width="256" height="256" loading="lazy"></span><span class="tool-copy"><strong>Canva</strong><small>Graphics &amp; thumbnails</small></span></article>
+    <article class="tool-card word" data-reveal><span class="tool-logo"><img src="tool-microsoft-word.png" alt="Microsoft Word logo" width="256" height="171" loading="lazy"></span><span class="tool-copy"><strong>Microsoft Word</strong><small>Scripts &amp; documents</small></span></article>
+  </div>
+</section>
+
 <!-- ============ REVIEWS ============ -->
 <section class="section" id="reviews" style="padding-top:0">
   <div class="section-head" data-reveal>
     <h2>Client testimonials <span class="grad">&amp; reviews</span></h2>
-    <div class="review-side">
-      <span class="count">Verified Upwork feedback and client recommendations</span>
-      <a class="upwork-link" href="https://www.upwork.com/freelancers/~01613a8b3b7e3e8bf2?viewMode=1" target="_blank" rel="noopener">View verified profile ↗</a>
-    </div>
-  </div>
-  <div class="trust-strip" data-reveal aria-label="Upwork profile highlights">
-    <div class="trust-item upwork"><b>upwork</b><span>Verified profile</span></div>
-    <div class="trust-item"><b>94%</b><span>Job Success</span></div>
-    <div class="trust-item"><b>16</b><span>Total jobs</span></div>
-    <div class="trust-item"><b>5.0</b><span>Profile rating</span></div>
   </div>
   <div class="rev-grid">
     <figure class="rev upwork" data-reveal>
@@ -735,19 +807,18 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   var editingPanel=document.getElementById('panel-editing');
   if(workSection&&editingPanel){editingPanel.appendChild(workSection);workSection.classList.add('embedded-portfolio')}
   var serviceVideos=document.querySelectorAll('.service-cover');
-  function startServiceVideos(forcePlayback){
+  function startServiceVideos(){
     serviceVideos.forEach(function(video){
       video.muted=true;video.defaultMuted=true;video.playsInline=true;
       video.setAttribute('muted','');video.setAttribute('playsinline','');video.setAttribute('webkit-playsinline','');
-      if(reduced&&!forcePlayback){video.pause();return}
       var playAttempt=video.play();if(playAttempt&&playAttempt.catch){playAttempt.catch(function(){})}
     });
   }
-  serviceVideos.forEach(function(video){video.addEventListener('canplay',function(){startServiceVideos(false)})});
-  startServiceVideos(false);
-  document.addEventListener('touchstart',function(){startServiceVideos(true)},{once:true,passive:true});
-  document.addEventListener('pointerdown',function(){startServiceVideos(true)},{once:true,passive:true});
-  document.addEventListener('visibilitychange',function(){if(!document.hidden){startServiceVideos(false)}});
+  serviceVideos.forEach(function(video){video.addEventListener('canplay',startServiceVideos)});
+  startServiceVideos();
+  document.addEventListener('touchstart',startServiceVideos,{once:true,passive:true});
+  document.addEventListener('pointerdown',startServiceVideos,{once:true,passive:true});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden){startServiceVideos()}});
   function selectService(tab){
     serviceTabs.forEach(function(t){t.setAttribute('aria-selected',t===tab?'true':'false')});
     servicePanels.forEach(function(panel){
@@ -780,7 +851,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   /* ---- Team carousel: automatic and manually controlled ---- */
   var members=[
     {name:'Janiel Resma',role:'Founder · Lead Video Editor · AI Voice-over',image:'janiel-resma.jpg',alt:'Janiel Resma at his video editing workstation',bio:"With over four years of professional experience, Janiel leads every project from concept to final delivery. He specializes in faceless YouTube content across long-form and short-form formats, shaping edits around each client's voice, audience, and creative goals while keeping every delivery polished and on time."},
-    {name:'Nikko Morallos',role:'Co-founder · Scriptwriter',image:'',alt:'',bio:'Nikko develops clear, audience-focused scripts that turn ideas into structured stories. He supports the studio with research, narrative flow, and retention-minded writing tailored to each channel and its viewers.'}
+    {name:'Nikko Morallos',role:'Co-founder · Professional Scriptwriter',image:'nikko-morallos.jpg',alt:'Nikko Morallos, professional scriptwriter and co-founder of J2R Studio',bio:'Professional scriptwriter with over two years of experience creating high-retention long-form and short-form content. His scripts have generated over 6.2 million views across YouTube, TikTok, Facebook, and other platforms. He maintains a 100% Job Success Score on Upwork with a Rising Talent badge and has written for channels including TheScareCast, Trail Terror, and The Wrangler. He specializes in true crime, horror, paranormal, mystery, entertainment, and documentary-style content, using AI tools to enhance research, fact-checking, and workflow efficiency without compromising originality or quality.'}
   ];
   var memberAt=0,teamRoot=document.getElementById('team'),photo=document.getElementById('memberPhoto');
   var memberName=document.getElementById('memberName'),memberRole=document.getElementById('memberRole');
@@ -803,6 +874,104 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   document.getElementById('teamPrev').addEventListener('click',function(){showMember(memberAt-1)});
   document.getElementById('teamNext').addEventListener('click',function(){showMember(memberAt+1)});
   restartTeamTimer();
+
+  /* ---- Google Drive portfolio: thumbnails first, player only on click ---- */
+  var driveLongGroups=[
+    {title:'Mystery Niche',items:[
+      {id:'1AhDI17dlQkpO71qXAToXZSpkebV0n3K0',title:'UFO EDIT - MYSTERY NICHE.mp4'},
+      {id:'1FU9fPYtF-LhjtylD2zXN_igNq445v3EC',title:'Amy Bradley - True Crime Niche.mp4'}
+    ]},
+    {title:'Whiteboard Sample',items:[
+      {id:'1pp6jzqP6KdYj3luE4ZMy6c_c2KJloonH',title:'Whiteboard Sample 2.mp4'},
+      {id:'13JnKEcDKtFNcRG7zQQUXab6A72tNUW2P',title:'WhiteBoard Sample 1.mp4'}
+    ]},
+    {title:'Sports',items:[
+      {id:'1_1-3n9g2L-ZzbNkTK3nUvrdVckWQTytE',title:'NFL - SPORTS NICHE.mp4'},
+      {id:'1ugYdWZoje23XGWFJ2_a4efM4QwbUKm_3',title:'Golfers vs Other Athletes -SPORTS NICHE.mp4'},
+      {id:'1q2HoqYoOcz9hxZt_T3I1dtMh0aRi2vmj',title:'Victor Wembanya Near Death Experience -SPORTS .mp4'}
+    ]},
+    {title:'Asian Drama',items:[
+      {id:'1JAi8twuqTyRJG0oke_F1IhX4fZAuDhbF',title:'SAMPLE 2 - C POP NICHE.mp4'},
+      {id:'1c9KT7RDVrVRt9N80nXJvhPBSDrmb7gsi',title:'SAMPLE 1 - KPOP NICHE.mp4'}
+    ]}
+  ];
+  var driveShortItems=[
+    {id:'1OdBdgeKKgWuS15yoDRiBaxbTgbwTGkeJ',title:'SHORT EDIT.mp4'},
+    {id:'1L5x2M3lGck7U5EhF1Jbz4sBbQ0KjXBPG',title:'IMPRACTICAL JOKERS EDIT.mp4'},
+    {id:'1AVEiOMr9dxgUZX8thh2zTi-2solrwzoy',title:'BUSINESS ADS EDIT.mp4'},
+    {id:'1Y8t5_T-mXdNFBRWvDPOKHJrkpYBH8kT0',title:'nitro plus auto clinic edit.mp4'},
+    {id:'1A0xAYeH3sJimcwQR9C0n5nvhHPGQU2DP',title:'RANKING VIDEOS.mp4'},
+    {id:'1K1sWCleU5F6AQKgdHfZjZ93XZ4GIhn4p',title:'BUSINESS PROMOTION.mp4'},
+    {id:'1jO5ZqqHnF3GsnI2xISpvc5_mRP2FaLW2',title:'CAT SAVES KID FROM DANGEROUS DOG(1).mp4'},
+    {id:'1wyVADxqhcXLZJbuKhWHPJaV3lz9gRD6D',title:'UGC SAMPLE 2.mp4'},
+    {id:'1slf_uFpg9-_TdFKV1uU5w8s3Xk4KopSu',title:'UGC CONTENT SHORT SAMPLE.mp4'}
+  ];
+  var driveModal=document.getElementById('driveVideoModal');
+  var drivePlayer=document.getElementById('driveVideoPlayer');
+  var driveVideoTitle=document.getElementById('driveVideoTitle');
+  var driveDialog=driveModal?driveModal.querySelector('.drive-modal-dialog'):null;
+  var lastDriveTrigger=null;
+  function cleanDriveTitle(title){return title.replace(/\.mp4$/i,'').trim()}
+  function openDriveVideo(item,format,trigger){
+    if(!driveModal||!drivePlayer)return;
+    lastDriveTrigger=trigger;driveVideoTitle.textContent=cleanDriveTitle(item.title);
+    driveDialog.classList.toggle('is-short',format==='short');
+    drivePlayer.src='https://drive.google.com/file/d/'+item.id+'/preview?autoplay=1';
+    driveModal.hidden=false;document.body.style.overflow='hidden';
+    setTimeout(function(){var close=driveModal.querySelector('.drive-modal-close');if(close)close.focus()},30);
+  }
+  function closeDriveVideo(){
+    if(!driveModal||driveModal.hidden)return;
+    driveModal.hidden=true;drivePlayer.removeAttribute('src');document.body.style.overflow='';
+    if(lastDriveTrigger)lastDriveTrigger.focus();
+  }
+  function makeDriveCard(item,format,collection){
+    var card=document.createElement('button');card.type='button';card.className='drive-video-card'+(format==='short'?' is-short':'');
+    card.setAttribute('aria-label','Play '+cleanDriveTitle(item.title)+' on this page');
+    var thumb=document.createElement('span');thumb.className='drive-video-thumb';
+    var thumbnailUrl='https://drive.google.com/thumbnail?id='+item.id+'&sz=w1200';
+    thumb.style.setProperty('--drive-thumb','url("'+thumbnailUrl+'")');
+    var image=document.createElement('img');image.src=thumbnailUrl;image.alt='';image.loading='lazy';image.decoding='async';
+    var play=document.createElement('span');play.className='drive-play';play.setAttribute('aria-hidden','true');
+    var playIcon=document.createElement('i');playIcon.textContent='▶';play.appendChild(playIcon);thumb.appendChild(image);thumb.appendChild(play);
+    var copy=document.createElement('span');copy.className='drive-video-copy';
+    var title=document.createElement('strong');title.textContent=cleanDriveTitle(item.title);
+    var meta=document.createElement('small');meta.textContent=(format==='short'?'Short-form':'Long-form')+' · '+collection;
+    copy.appendChild(title);copy.appendChild(meta);card.appendChild(thumb);card.appendChild(copy);
+    card.addEventListener('click',function(){openDriveVideo(item,format,card)});return card;
+  }
+  function renderDriveCollection(root,title,items,format){
+    if(!root)return;
+    var section=document.createElement('section');section.className='drive-collection';
+    var head=document.createElement('div');head.className='drive-collection-head';
+    var heading=document.createElement('h3');heading.textContent=title;
+    var meta=document.createElement('p');meta.textContent=items.length+' video sample'+(items.length===1?'':'s');
+    var grid=document.createElement('div');grid.className='drive-video-grid'+(format==='short'?' short-grid':'');
+    items.forEach(function(item){grid.appendChild(makeDriveCard(item,format,title))});
+    head.appendChild(heading);head.appendChild(meta);section.appendChild(head);section.appendChild(grid);root.appendChild(section);
+  }
+  var driveLongRoot=document.getElementById('driveLongPanel'),driveShortRoot=document.getElementById('driveShortPanel');
+  driveLongGroups.forEach(function(group){renderDriveCollection(driveLongRoot,group.title,group.items,'long')});
+  renderDriveCollection(driveShortRoot,'Short-form edits',driveShortItems,'short');
+  var driveFormatTabs=document.querySelectorAll('.drive-format-btn');
+  function selectDriveFormat(tab){
+    driveFormatTabs.forEach(function(button){button.setAttribute('aria-selected',button===tab?'true':'false')});
+    if(driveLongRoot)driveLongRoot.hidden=tab.dataset.driveFormat!=='long';
+    if(driveShortRoot)driveShortRoot.hidden=tab.dataset.driveFormat!=='short';
+    requestAnimationFrame(function(){if(window.ScrollTrigger)ScrollTrigger.refresh()});
+  }
+  driveFormatTabs.forEach(function(tab){
+    tab.addEventListener('click',function(){selectDriveFormat(tab)});
+    tab.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();
+      var list=Array.prototype.slice.call(driveFormatTabs),at=list.indexOf(tab),next=list[(at+(e.key==='ArrowRight'?1:-1)+list.length)%list.length];
+      next.focus();selectDriveFormat(next);
+    });
+  });
+  if(driveModal){
+    driveModal.querySelectorAll('[data-close-drive-video]').forEach(function(button){button.addEventListener('click',closeDriveVideo)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDriveVideo()});
+  }
 
   /* ---- Curated portfolio grouped by niche ---- */
   var cards=document.querySelectorAll('.project'),grid=document.getElementById('workGrid');
