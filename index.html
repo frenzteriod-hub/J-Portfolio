@@ -226,6 +226,21 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .portfolio-cta{display:inline-flex;align-items:center;gap:12px;margin-top:28px;padding:14px 22px;border-radius:999px;background:var(--blue);
   color:#fff;font-size:14px;font-weight:700;box-shadow:0 0 34px -12px var(--glow);transition:transform .25s var(--ease),background .25s,box-shadow .25s}
 .portfolio-cta:hover{transform:translateY(-3px);background:var(--blue-bright);box-shadow:0 16px 42px -20px var(--glow)}
+.script-portfolio{display:grid;gap:clamp(40px,5vw,64px);margin-top:clamp(42px,5vw,66px);padding-top:clamp(38px,5vw,58px);border-top:1px solid var(--border)}
+.script-portfolio-head{display:flex;align-items:end;justify-content:space-between;gap:24px}
+.script-portfolio-head h4{font-family:var(--font-display);font-size:clamp(27px,3.5vw,46px);line-height:1.05;letter-spacing:-.035em}
+.script-portfolio-head p{max-width:42ch;color:var(--soft);font-size:12px;line-height:1.65;text-align:right}
+#scriptCollections{display:grid;gap:clamp(42px,5vw,62px)}
+.script-collection{display:grid;gap:18px}
+.script-collection-head{display:flex;align-items:end;justify-content:space-between;gap:20px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.script-collection-head h5{font-family:var(--font-display);font-size:clamp(21px,2.5vw,31px);letter-spacing:-.025em}
+.script-collection-head span{color:var(--soft);font-size:10px;font-weight:750;letter-spacing:.13em;text-transform:uppercase}
+.script-grid{display:grid;gap:8px}
+.script-card{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;width:100%;padding:18px 20px;text-align:left;border:1px solid var(--border);border-radius:14px;background:rgba(7,15,29,.68);transition:transform .3s var(--ease),border-color .3s,background .3s}
+.script-card strong{font-family:var(--font-display);font-size:clamp(14px,1.5vw,17px);line-height:1.45}
+.script-card .script-arrow{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--border-strong);color:var(--blue-bright);font-size:17px;transition:transform .3s var(--ease),background .25s,color .25s}
+.script-card:hover{transform:translateX(5px);border-color:var(--border-strong);background:rgba(18,36,68,.72)}
+.script-card:hover .script-arrow{transform:translateX(2px);background:var(--blue-bright);color:#fff}
 .format-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}
 .format-card{border:1px solid var(--border-strong);border-radius:22px;overflow:hidden;background:rgba(7,15,29,.78);
   transition:transform .45s var(--ease),border-color .35s,box-shadow .35s;position:relative}
@@ -402,6 +417,8 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .drive-player{width:100%;aspect-ratio:16/9;border:0;display:block;background:#02050b}
 .drive-modal-dialog.is-short{width:min(520px,100%)}
 .drive-modal-dialog.is-short .drive-player{aspect-ratio:9/16}
+.script-modal-dialog{display:flex;flex-direction:column;width:min(980px,100%);height:min(900px,calc(100vh - 28px));overflow:hidden}
+.script-player{width:100%;min-height:0;flex:1;border:0;background:#eef1f7}
 .published-divider{display:flex;align-items:end;justify-content:space-between;gap:28px;margin:0 0 34px;padding:clamp(32px,5vw,58px) 0 24px;border-top:1px solid var(--border)}
 .published-divider h3{font-family:var(--font-display);font-size:clamp(28px,4vw,50px);letter-spacing:-.035em;margin-top:9px}
 .published-divider p{max-width:42ch;text-align:right;color:var(--soft);font-size:11px;line-height:1.6;letter-spacing:.12em;text-transform:uppercase}
@@ -530,6 +547,8 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   .drive-format-btn{justify-content:center;padding:11px 13px}
   .drive-video-grid{grid-template-columns:1fr}
   .drive-video-grid.short-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .script-portfolio-head,.script-collection-head{align-items:start;flex-direction:column;gap:8px}
+  .script-portfolio-head p{text-align:left}
   .drive-collection-head{align-items:start;flex-direction:column;gap:5px}
   .published-divider{align-items:start;flex-direction:column;gap:12px}
   .published-divider p{text-align:left}
@@ -691,7 +710,13 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
         <span class="eyebrow">Scriptwriting</span>
         <h3>Scripts built to keep viewers watching.</h3>
         <p>Research-led scripts with clear structure, natural pacing, and retention-focused storytelling tailored to your channel and audience.</p>
-        <a class="portfolio-cta" href="https://drive.google.com/drive/folders/1aZ8EL5Nq0B5X9_VTigdKcoBRk_izH8kJ?usp=drive_link" target="_blank" rel="noopener">View scriptwriting portfolio <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="script-portfolio" id="scriptPortfolio">
+        <div class="script-portfolio-head">
+          <div><span class="eyebrow">Selected writing</span><h4>Read the work on this page.</h4></div>
+          <p>Ten long-form samples organized by content style. Choose any script to open the full document without browsing a Drive folder.</p>
+        </div>
+        <div id="scriptCollections"></div>
       </div>
     </div>
     <div class="service-panel" role="tabpanel" id="panel-editing" aria-labelledby="tab-editing" tabindex="0">
@@ -775,6 +800,17 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
       <button class="drive-modal-close" type="button" data-close-drive-video aria-label="Close video player">×</button>
     </div>
     <iframe class="drive-player" id="driveVideoPlayer" title="J2R Studio video sample" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="drive-video-modal" id="scriptModal" role="dialog" aria-modal="true" aria-labelledby="scriptModalTitle" hidden>
+  <button class="drive-modal-backdrop" type="button" data-close-script aria-label="Close script reader"></button>
+  <div class="drive-modal-dialog script-modal-dialog" role="document">
+    <div class="drive-modal-head">
+      <h3 id="scriptModalTitle">Script sample</h3>
+      <button class="drive-modal-close" type="button" data-close-script aria-label="Close script reader">×</button>
+    </div>
+    <iframe class="script-player" id="scriptPlayer" title="J2R Studio script sample"></iframe>
   </div>
 </div>
 
@@ -948,6 +984,68 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
       if(editingTab){selectService(editingTab)}
       setTimeout(function(){if(workSection){workSection.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'})}},80);
     });
+  }
+
+  /* ---- Scriptwriting portfolio: organized samples with an on-page reader ---- */
+  var scriptGroups=[
+    {title:'True Crime & Police Stories',items:[
+      {id:'14TJLQeiGHN0TEXIUeMyjZ3vJyd1TmRMj',title:'When Police Arrest the Wrong Person',type:'DOCX'},
+      {id:'1f3aUsvO7uPh9pnxPPejvTNqwammrm3Bt',title:"MGHI — Editor's Copy",type:'PDF'},
+      {id:'18_Ubu1XH_fRo6l_woUamjaWJT1XLsB3X',title:"Alyssa Marie Blackburn — Editor's Copy",type:'PDF'}
+    ]},
+    {title:'Viral Compilations & Documentary',items:[
+      {id:'1PW3D8RJshzuGQOjeYKrqFtXTdt-kiGaW',title:'30 Zoo Moments No One Would Believe If They Were Not Filmed',type:'DOCX'},
+      {id:'1eIJXEmBLDtiIAaO-DINeXpAccvEYmO1_',title:'50 Shocking Catastrophic Failures Caught on Camera',type:'DOCX'}
+    ]},
+    {title:'Entertainment & TV',items:[
+      {id:'1pqhfrInoiBFUaRkQm5CiKog8F5fD_XMJ',title:"LANDMAN Season 3: Cami's Revenge Plan Backfires",type:'DOCX'},
+      {id:'1fR325RPi3e9LisZ1x0B4_QcX9l-0aAAs',title:'LANDMAN Season 3 Official Teaser Trailer',type:'DOCX'}
+    ]},
+    {title:'Horror & Wilderness',items:[
+      {id:'1vcnM8EgpAlcmaAA_E6htfZPCDZ2I09GD',title:'Unexplainable Wilderness Sightings',type:'PDF'},
+      {id:'1Gt1Aa3JEBUExv8Ht0C8NVgNqE0icPjyV',title:'Bigfoot Encounters Hikers — New Trail Cam Footage',type:'PDF'},
+      {id:'1xTXCEwUe44gJZkjJMUgrRg17WZwEATG-',title:"This Wasn't Human — Horrifying Woods Footage",type:'DOCX'}
+    ]}
+  ];
+  var scriptCollections=document.getElementById('scriptCollections');
+  var scriptModal=document.getElementById('scriptModal');
+  var scriptPlayer=document.getElementById('scriptPlayer');
+  var scriptModalTitle=document.getElementById('scriptModalTitle');
+  var lastScriptTrigger=null;
+  function openScript(item,trigger){
+    if(!scriptModal||!scriptPlayer)return;
+    lastScriptTrigger=trigger;scriptModalTitle.textContent=item.title;
+    scriptPlayer.src='https://drive.google.com/file/d/'+item.id+'/preview';
+    scriptModal.hidden=false;document.body.style.overflow='hidden';
+    setTimeout(function(){var close=scriptModal.querySelector('.drive-modal-close');if(close)close.focus()},30);
+  }
+  function closeScript(){
+    if(!scriptModal||scriptModal.hidden)return;
+    scriptModal.hidden=true;scriptPlayer.removeAttribute('src');document.body.style.overflow='';
+    if(lastScriptTrigger)lastScriptTrigger.focus();
+  }
+  function makeScriptCard(item,collection){
+    var card=document.createElement('button');card.type='button';card.className='script-card';
+    card.setAttribute('aria-label','Read '+item.title+' on this page');
+    var title=document.createElement('strong');title.textContent=item.title;
+    var arrow=document.createElement('span');arrow.className='script-arrow';arrow.setAttribute('aria-hidden','true');arrow.textContent='↗';
+    card.appendChild(title);card.appendChild(arrow);
+    card.addEventListener('click',function(){openScript(item,card)});return card;
+  }
+  if(scriptCollections){
+    scriptGroups.forEach(function(group){
+      var section=document.createElement('section');section.className='script-collection';
+      var head=document.createElement('div');head.className='script-collection-head';
+      var heading=document.createElement('h5');heading.textContent=group.title;
+      var count=document.createElement('span');count.textContent=group.items.length+' script'+(group.items.length===1?'':'s');
+      var grid=document.createElement('div');grid.className='script-grid';
+      group.items.forEach(function(item){grid.appendChild(makeScriptCard(item,group.title))});
+      head.appendChild(heading);head.appendChild(count);section.appendChild(head);section.appendChild(grid);scriptCollections.appendChild(section);
+    });
+  }
+  if(scriptModal){
+    scriptModal.querySelectorAll('[data-close-script]').forEach(function(button){button.addEventListener('click',closeScript)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeScript()});
   }
 
   /* ---- Team carousel: automatic and manually controlled ---- */
