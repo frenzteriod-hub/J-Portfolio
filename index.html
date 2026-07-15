@@ -107,6 +107,18 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   position:relative;overflow:hidden;padding:130px clamp(20px,5vw,64px) 90px}
 .hero-photo{position:absolute;inset:0;z-index:-3;background:url('hero-bg.jpg') center/cover no-repeat;
   opacity:.26;transform:scale(1.06)}
+.hero-motion{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none;
+  background:radial-gradient(circle at 18% 72%,rgba(61,126,245,.18),transparent 25%),radial-gradient(circle at 82% 54%,rgba(94,151,255,.14),transparent 24%);
+  background-size:125% 125%;animation:heroAmbient 10s ease-in-out infinite alternate}
+.hero-motion::before{content:"";position:absolute;left:-12%;right:-12%;top:37%;bottom:-28%;opacity:.32;
+  background-image:radial-gradient(circle,rgba(155,192,255,.9) 0 1.2px,transparent 1.9px);background-size:34px 34px;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,rgba(0,0,0,.95) 30%,transparent 92%);mask-image:linear-gradient(to bottom,transparent,rgba(0,0,0,.95) 30%,transparent 92%);
+  transform:perspective(560px) rotateX(61deg) scale(1.2);transform-origin:50% 100%;animation:heroGridDrift 7s linear infinite}
+.hero-motion::after{content:"";position:absolute;width:42vw;height:42vw;min-width:360px;min-height:360px;border-radius:50%;left:29%;top:31%;
+  background:radial-gradient(circle,rgba(94,151,255,.2),rgba(61,126,245,.07) 38%,transparent 68%);filter:blur(12px);animation:heroGlow 8s var(--ease) infinite alternate}
+@keyframes heroAmbient{from{background-position:0 0}to{background-position:8% -6%}}
+@keyframes heroGridDrift{to{background-position:68px 34px}}
+@keyframes heroGlow{from{transform:translate3d(-8%,-4%,0) scale(.92);opacity:.55}to{transform:translate3d(10%,7%,0) scale(1.12);opacity:1}}
 #bg3d{position:absolute;inset:0;z-index:-2;
   -webkit-mask-image:linear-gradient(to bottom,transparent 4%,rgba(0,0,0,.9) 52%);
   mask-image:linear-gradient(to bottom,transparent 4%,rgba(0,0,0,.9) 52%)}
@@ -114,6 +126,11 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   background:radial-gradient(56% 42% at 50% 40%,rgba(61,126,245,.14),transparent 70%),
              linear-gradient(180deg,rgba(5,8,15,.6),rgba(5,8,15,.2) 42%,var(--bg) 94%)}
 .hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center;will-change:transform}
+.hero-inner>.badge{animation:heroEnter .65s .08s var(--ease) both}
+.hero-inner>h1{animation:heroEnter .78s .18s var(--ease) both}
+.hero-inner>.hero-cta-row{animation:heroEnter .72s .3s var(--ease) both}
+.hero-inner>.hero-stats{animation:heroEnter .72s .4s var(--ease) both}
+@keyframes heroEnter{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
 .badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
   color:var(--blue-bright);border:1px solid var(--border-strong);background:rgba(61,126,245,.08);
   padding:9px 18px;border-radius:999px;margin-bottom:30px;backdrop-filter:blur(6px)}
@@ -530,7 +547,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .marquee-track,.scroll-cue svg,.badge .pulse,.team-orbit,.team-progress i,.reel-frame,.caption-beat i{animation:none}
+  .marquee-track,.scroll-cue svg,.badge .pulse,.team-orbit,.team-progress i,.reel-frame,.caption-beat i,.hero-motion,.hero-motion::before,.hero-motion::after,.hero-inner>*{animation:none}
   .hero h1 .grad,.contact h2 a{animation:none}
   *,*::before,*::after{transition-duration:.01ms!important}
 }
@@ -559,6 +576,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 
 <header class="hero" id="top">
   <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-motion" aria-hidden="true"></div>
   <canvas id="bg3d" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <p class="badge"><span class="pulse" aria-hidden="true"></span>Creative Agency for YouTube Creators</p>
