@@ -45,23 +45,23 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   transform-origin:0 50%;transform:scaleX(0);z-index:100}
 
 /* ---------- Nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
   padding:18px clamp(20px,5vw,64px);transition:background .3s,box-shadow .3s,backdrop-filter .3s}
 .nav.scrolled{background:rgba(5,8,15,.72);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border)}
-.nav-logo{font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px}
+.nav-logo{grid-column:1;position:relative;z-index:1;font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px}
 .nav-logo .mark{width:36px;height:36px;border-radius:10px;background:#0E1930;border:1px solid var(--border-strong);
   color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;position:relative;overflow:hidden;flex:none}
 .nav-logo .mark::before{content:"";position:absolute;width:24px;height:24px;border-radius:50%;background:var(--blue);top:-11px;right:-11px}
 .nav-logo .mark::after{content:"";position:absolute;width:17px;height:17px;border-radius:50%;background:var(--blue);bottom:-8px;left:-8px}
 .nav-logo .mark b{position:relative;z-index:1}
-.nav-right{display:flex;align-items:center;gap:32px}
-.nav-links{display:flex;gap:30px;list-style:none}
+.nav-right{grid-column:1/-1;grid-row:1;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;pointer-events:none}
+.nav-links{grid-column:2;display:flex;gap:30px;list-style:none;pointer-events:auto}
 .nav-links a{font-size:14px;font-weight:500;color:var(--text);position:relative;transition:color .2s}
 .nav-links a:hover{color:#fff}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1.5px;background:var(--blue-bright);
   transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
 .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav-cta{font-size:14px;font-weight:600;padding:10px 20px;border-radius:999px;background:var(--blue);color:#fff;
+.nav-cta{grid-column:3;justify-self:end;pointer-events:auto;font-size:14px;font-weight:600;padding:10px 20px;border-radius:999px;background:var(--blue);color:#fff;
   box-shadow:0 0 24px -6px var(--glow);transition:background .25s,transform .25s var(--ease),box-shadow .25s}
 .nav-cta:hover{background:var(--blue-bright);transform:translateY(-1px);box-shadow:0 0 34px -4px var(--glow)}
 
@@ -89,6 +89,12 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .hero h1 .char{display:inline-block;white-space:pre}
 .hero-sub{max-width:640px;margin-top:30px;font-size:clamp(16px,1.6vw,19px);color:var(--text)}
 .hero-cta-row{display:flex;gap:16px;margin-top:42px;flex-wrap:wrap;justify-content:center}
+.hero-stats{width:min(820px,100%);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:42px;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(7,15,29,.3);backdrop-filter:blur(8px)}
+.hero-stat{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62px;padding:0 24px}
+.hero-stat+.hero-stat{border-left:1px solid var(--border)}
+.hero-stat strong{font-family:var(--font-display);font-size:clamp(24px,3vw,38px);line-height:1;letter-spacing:-.035em;color:#fff}
+.hero-stat small{margin-top:8px;color:var(--soft);font-size:9px;font-weight:750;letter-spacing:.14em;line-height:1.35;text-transform:uppercase}
+.hero-stat small span{color:var(--blue-bright)}
 .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;border-radius:999px;
   padding:15px 30px;transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s,box-shadow .25s;
   border:1.5px solid transparent;will-change:transform}
@@ -216,6 +222,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .statement h2 span{color:transparent;-webkit-text-stroke:1.5px rgba(148,178,235,.7)}
 .big-words{font-family:var(--font-display);font-weight:550;letter-spacing:-.02em;line-height:1.5;
   font-size:clamp(18px,2.1vw,30px);color:var(--fg);max-width:38ch}
+.about-belief{max-width:68ch;margin-top:28px;color:var(--text);font-size:clamp(15px,1.35vw,18px);line-height:1.75}
 .statement-note{display:block;margin-top:32px;padding-top:22px;border-top:1px solid var(--border);font-size:13px;color:var(--soft);letter-spacing:.11em;text-transform:uppercase}
 
 /* ---------- Team ---------- */
@@ -237,6 +244,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 .team-copy h2{font-family:var(--font-display);font-size:clamp(38px,5vw,70px);line-height:1;letter-spacing:-.04em;margin-top:18px}
 .member-role{display:block;color:var(--text);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-top:14px}
 .member-bio{color:var(--text);font-size:clamp(15px,1.3vw,18px);max-width:63ch;margin-top:28px;line-height:1.75}
+.member-bio p+p{margin-top:18px}
 .team-controls{display:flex;align-items:center;gap:10px;margin-top:32px}
 .team-btn{width:46px;height:46px;border-radius:50%;border:1px solid var(--border-strong);display:grid;place-items:center;font-size:19px;
   transition:background .25s,border-color .25s,transform .25s}
@@ -442,6 +450,11 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   .team-shell{grid-template-columns:.85fr 1.15fr;gap:32px}
   .rev-grid{grid-template-columns:1fr 1fr}
 }
+@media (max-width:900px){
+  .nav{display:flex;justify-content:space-between}
+  .nav-right{display:flex;margin-left:auto}
+  .nav-links{display:none}
+}
 @media (max-width:768px){
   .nav-links{display:none}
   .work-grid,.rev-grid{grid-template-columns:1fr}
@@ -450,6 +463,10 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   .service-tab{min-height:290px}
   .hero-cta-row{width:100%;flex-direction:column;align-items:center;gap:11px}
   .hero-cta-row .btn{width:min(100%,320px);justify-content:center}
+  .hero-stats{margin-top:32px;padding:14px 0}
+  .hero-stat{min-height:56px;padding:0 8px}
+  .hero-stat strong{font-size:clamp(21px,7vw,29px)}
+  .hero-stat small{font-size:7px;letter-spacing:.1em}
   .editing-panel{grid-template-columns:1fr}
   .format-grid{grid-template-columns:1fr}
   .drive-format-switch{display:grid;grid-template-columns:1fr 1fr;width:100%}
@@ -491,7 +508,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   </a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#about">About Us</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -507,11 +524,16 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     <p class="badge"><span class="pulse" aria-hidden="true"></span>Creative Agency for YouTube Creators</p>
     <h1 id="heroTitle" aria-label="Turning your vision into reality.">Turning your <span class="grad">vision</span> into reality.</h1>
     <div class="hero-cta-row">
-      <a class="btn btn-ghost" data-magnetic href="#about">About us</a>
+      <a class="btn btn-ghost" data-magnetic href="#about">About</a>
       <a class="btn btn-primary" data-magnetic data-open-portfolio href="#services">View portfolio
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a class="btn btn-ghost" data-magnetic href="https://www.facebook.com/j2rstudios" target="_blank" rel="noopener">Message us</a>
+    </div>
+    <div class="hero-stats" aria-label="J2R Studio highlights">
+      <div class="hero-stat"><strong>500+</strong><small>Projects delivered</small></div>
+      <div class="hero-stat"><strong>99%</strong><small>Client satisfaction</small></div>
+      <div class="hero-stat"><strong>72.7M+</strong><small>Current client views · <span>combined</span></small></div>
     </div>
   </div>
   <p class="scroll-cue">Scroll
@@ -535,7 +557,8 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
       <h2>About<br><span>us.</span></h2>
     </div>
     <div data-reveal>
-      <p class="big-words">We are a team of experienced video editors and scriptwriters dedicated to helping content creators and businesses overcome marketing challenges. By producing high-quality, engaging content with fast turnaround times, we help strengthen your online presence, grow your audience, and reach more customers.</p>
+      <p class="big-words">Our journey began with a shared vision: to combine our skills and provide complete content creation solutions for startups, content creators, and growing businesses. By working together, we help clients bring their ideas to life through creative, high-quality content tailored to their goals.</p>
+      <p class="about-belief">We believe that great content is more than just visuals—it’s about telling compelling stories, building meaningful connections, and creating a lasting impact. With a commitment to quality, clear communication, and reliable turnaround times, we strive to make the creative process seamless while helping our clients strengthen their online presence, grow their audience, and achieve long-term success.</p>
       <span class="statement-note">Strategy · Storytelling · Editing · Delivery</span>
     </div>
   </div>
@@ -550,7 +573,10 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
         <span class="eyebrow">Meet the team</span>
         <h2 id="memberName">Janiel Resma</h2>
         <span class="member-role" id="memberRole">Founder · Lead Video Editor · AI Voice-over</span>
-        <p class="member-bio" id="memberBio">With over four years of professional experience, Janiel leads every project from concept to final delivery. He specializes in faceless YouTube content across long-form and short-form formats, shaping edits around each client's voice, audience, and creative goals while keeping every delivery polished and on time.</p>
+        <div class="member-bio" id="memberBio">
+          <p>With four years of professional experience in video editing, I specialize in creating faceless YouTube content and short-form videos for content creators and businesses. Over the years, I have worked across a wide range of niches, producing engaging, high-retention content that helps clients grow their channels and strengthen their online presence.</p>
+          <p>In addition to video editing, I have two years of experience as a project manager, where I have successfully coordinated creative workflows, managed deadlines, and ensured projects are delivered on time. I take pride in carefully following client instructions, adapting to different editing styles, and bringing each client’s vision to life. My attention to detail, reliability, and commitment to quality allow me to consistently deliver content that meets expectations and supports my clients’ goals.</p>
+        </div>
         <div class="team-controls">
           <button class="team-btn" id="teamPrev" aria-label="Previous team member">←</button>
           <div class="team-progress" aria-hidden="true"><i id="teamTimer"></i></div>
@@ -560,6 +586,22 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
       </div>
     </div>
   </section>
+</section>
+
+<!-- ============ TOOLS & SOFTWARE ============ -->
+<section class="tools-stack" id="tools">
+  <div class="tools-head" data-reveal>
+    <div><span class="eyebrow">Production stack</span><h2>Tools <span class="grad">&amp; software</span></h2></div>
+    <p>The professional platforms we use across scripting, production, editing, voice, graphics, and licensed media.</p>
+  </div>
+  <div class="tools-grid">
+    <article class="tool-card capcut" data-reveal><span class="tool-logo"><img src="tool-capcut.png" alt="CapCut logo" width="64" height="64" loading="lazy"></span><span class="tool-copy"><strong>CapCut Pro</strong><small>Short-form editing</small></span></article>
+    <article class="tool-card premiere" data-reveal><span class="tool-logo"><img src="tool-premiere-pro.png" alt="Adobe Premiere Pro logo" width="173" height="190" loading="lazy"></span><span class="tool-copy"><strong>Premiere Pro</strong><small>Professional video editing</small></span></article>
+    <article class="tool-card elevenlabs" data-reveal><span class="tool-logo"><img src="tool-elevenlabs.png" alt="ElevenLabs logo" width="32" height="32" loading="lazy"></span><span class="tool-copy"><strong>ElevenLabs</strong><small>AI voice production</small></span></article>
+    <article class="tool-card storyblocks" data-reveal><span class="tool-logo"><img src="tool-storyblocks.png" alt="Storyblocks logo" width="200" height="200" loading="lazy"></span><span class="tool-copy"><strong>Storyblocks</strong><small>Licensed stock media</small></span></article>
+    <article class="tool-card canva" data-reveal><span class="tool-logo"><img src="tool-canva.png" alt="Canva logo" width="256" height="256" loading="lazy"></span><span class="tool-copy"><strong>Canva</strong><small>Graphics &amp; thumbnails</small></span></article>
+    <article class="tool-card word" data-reveal><span class="tool-logo"><img src="tool-microsoft-word.png" alt="Microsoft Word logo" width="256" height="171" loading="lazy"></span><span class="tool-copy"><strong>Microsoft Word</strong><small>Scripts &amp; documents</small></span></article>
+  </div>
 </section>
 
 <!-- ============ SERVICES ============ -->
@@ -625,12 +667,13 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   </div>
   <div class="drive-portfolio" id="drivePortfolio">
     <div class="drive-format-switch" role="tablist" aria-label="Choose a video format">
-      <button class="drive-format-btn" type="button" role="tab" id="driveLongTab" aria-controls="driveLongPanel" aria-selected="true" data-drive-format="long">Long-form <span>9</span></button>
+      <button class="drive-format-btn" type="button" role="tab" id="driveLongTab" aria-controls="driveLongPanel" aria-selected="true" data-drive-format="long">Long-form <span>18</span></button>
       <button class="drive-format-btn" type="button" role="tab" id="driveShortTab" aria-controls="driveShortPanel" aria-selected="false" data-drive-format="short">Short-form <span>9</span></button>
     </div>
     <div class="drive-panel" id="driveLongPanel" role="tabpanel" aria-labelledby="driveLongTab"></div>
     <div class="drive-panel" id="driveShortPanel" role="tabpanel" aria-labelledby="driveShortTab" hidden></div>
   </div>
+  <div class="selected-niche-edits" id="selectedNicheEdits">
   <div class="published-divider" data-reveal>
     <div><span class="eyebrow">Published channel work</span><h3>Selected niche edits</h3></div>
     <p>Dog videos · Horror &amp; supernatural · Sheridan Universe</p>
@@ -663,6 +706,7 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     <a class="project" data-cat="tv" href="https://youtu.be/p48O7eT-MDA" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/p48O7eT-MDA/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/p48O7eT-MDA/hqdefault.jpg'" alt="1923: Alexandra's Secret Changes Everything — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>1923: Alexandra's Secret Changes EVERYTHING!</h3><span class="tag"><i></i>The Wrangler · Sheridan Universe</span></div></a>
     <a class="project" data-cat="tv" href="https://youtu.be/vdiwVk2F630" target="_blank" rel="noopener"><div class="project-thumb"><img src="https://i.ytimg.com/vi/vdiwVk2F630/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/vdiwVk2F630/hqdefault.jpg'" alt="LANDMAN Season 3 Official Teaser Trailer — thumbnail" loading="lazy"><span class="view"><span class="view-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>Watch</span></span></div><div class="project-body"><h3>LANDMAN Season 3 Official Teaser Trailer</h3><span class="tag"><i></i>The Wrangler · Sheridan Universe</span></div></a>
   </div>
+  </div>
 </section>
 
 <div class="drive-video-modal" id="driveVideoModal" role="dialog" aria-modal="true" aria-labelledby="driveVideoTitle" hidden>
@@ -675,22 +719,6 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
     <iframe class="drive-player" id="driveVideoPlayer" title="J2R Studio video sample" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
   </div>
 </div>
-
-<!-- ============ TOOLS & SOFTWARE ============ -->
-<section class="tools-stack" id="tools">
-  <div class="tools-head" data-reveal>
-    <div><span class="eyebrow">Production stack</span><h2>Tools <span class="grad">&amp; software</span></h2></div>
-    <p>The professional platforms we use across scripting, production, editing, voice, graphics, and licensed media.</p>
-  </div>
-  <div class="tools-grid">
-    <article class="tool-card capcut" data-reveal><span class="tool-logo"><img src="tool-capcut.png" alt="CapCut logo" width="64" height="64" loading="lazy"></span><span class="tool-copy"><strong>CapCut Pro</strong><small>Short-form editing</small></span></article>
-    <article class="tool-card premiere" data-reveal><span class="tool-logo"><img src="tool-premiere-pro.png" alt="Adobe Premiere Pro logo" width="173" height="190" loading="lazy"></span><span class="tool-copy"><strong>Premiere Pro</strong><small>Professional video editing</small></span></article>
-    <article class="tool-card elevenlabs" data-reveal><span class="tool-logo"><img src="tool-elevenlabs.png" alt="ElevenLabs logo" width="32" height="32" loading="lazy"></span><span class="tool-copy"><strong>ElevenLabs</strong><small>AI voice production</small></span></article>
-    <article class="tool-card storyblocks" data-reveal><span class="tool-logo"><img src="tool-storyblocks.png" alt="Storyblocks logo" width="200" height="200" loading="lazy"></span><span class="tool-copy"><strong>Storyblocks</strong><small>Licensed stock media</small></span></article>
-    <article class="tool-card canva" data-reveal><span class="tool-logo"><img src="tool-canva.png" alt="Canva logo" width="256" height="256" loading="lazy"></span><span class="tool-copy"><strong>Canva</strong><small>Graphics &amp; thumbnails</small></span></article>
-    <article class="tool-card word" data-reveal><span class="tool-logo"><img src="tool-microsoft-word.png" alt="Microsoft Word logo" width="256" height="171" loading="lazy"></span><span class="tool-copy"><strong>Microsoft Word</strong><small>Scripts &amp; documents</small></span></article>
-  </div>
-</section>
 
 <!-- ============ REVIEWS ============ -->
 <section class="section" id="reviews" style="padding-top:0">
@@ -850,8 +878,8 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
 
   /* ---- Team carousel: automatic and manually controlled ---- */
   var members=[
-    {name:'Janiel Resma',role:'Founder · Lead Video Editor · AI Voice-over',image:'janiel-resma.jpg',alt:'Janiel Resma at his video editing workstation',bio:"With over four years of professional experience, Janiel leads every project from concept to final delivery. He specializes in faceless YouTube content across long-form and short-form formats, shaping edits around each client's voice, audience, and creative goals while keeping every delivery polished and on time."},
-    {name:'Nikko Morallos',role:'Co-founder · Professional Scriptwriter',image:'nikko-morallos.jpg',alt:'Nikko Morallos, professional scriptwriter and co-founder of J2R Studio',bio:'Professional scriptwriter with over two years of experience creating high-retention long-form and short-form content. His scripts have generated over 6.2 million views across YouTube, TikTok, Facebook, and other platforms. He maintains a 100% Job Success Score on Upwork with a Rising Talent badge and has written for channels including TheScareCast, Trail Terror, and The Wrangler. He specializes in true crime, horror, paranormal, mystery, entertainment, and documentary-style content, using AI tools to enhance research, fact-checking, and workflow efficiency without compromising originality or quality.'}
+    {name:'Janiel Resma',role:'Founder · Lead Video Editor · AI Voice-over',image:'janiel-resma.jpg',alt:'Janiel Resma at his video editing workstation',bio:["With four years of professional experience in video editing, I specialize in creating faceless YouTube content and short-form videos for content creators and businesses. Over the years, I have worked across a wide range of niches, producing engaging, high-retention content that helps clients grow their channels and strengthen their online presence.","In addition to video editing, I have two years of experience as a project manager, where I have successfully coordinated creative workflows, managed deadlines, and ensured projects are delivered on time. I take pride in carefully following client instructions, adapting to different editing styles, and bringing each client's vision to life. My attention to detail, reliability, and commitment to quality allow me to consistently deliver content that meets expectations and supports my clients' goals."]},
+    {name:'Nikko Morallos',role:'Co-founder · Professional Scriptwriter',image:'nikko-morallos.jpg',alt:'Nikko Morallos, professional scriptwriter and co-founder of J2R Studio',bio:['Professional scriptwriter with over two years of experience creating high-retention long-form and short-form content. His scripts have generated over 6.2 million views across YouTube, TikTok, Facebook, and other platforms. He maintains a 100% Job Success Score on Upwork with a Rising Talent badge and has written for channels including TheScareCast, Trail Terror, and The Wrangler. He specializes in true crime, horror, paranormal, mystery, entertainment, and documentary-style content, using AI tools to enhance research, fact-checking, and workflow efficiency without compromising originality or quality.']}
   ];
   var memberAt=0,teamRoot=document.getElementById('team'),photo=document.getElementById('memberPhoto');
   var memberName=document.getElementById('memberName'),memberRole=document.getElementById('memberRole');
@@ -865,7 +893,8 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   function showMember(next){
     memberAt=(next+members.length)%members.length;var m=members[memberAt];
     teamRoot.classList.remove('team-switching');void teamRoot.offsetWidth;teamRoot.classList.add('team-switching');
-    memberName.textContent=m.name;memberRole.textContent=m.role;memberBio.textContent=m.bio;
+    memberName.textContent=m.name;memberRole.textContent=m.role;memberBio.replaceChildren();
+    m.bio.forEach(function(paragraph){var p=document.createElement('p');p.textContent=paragraph;memberBio.appendChild(p)});
     memberIndex.textContent='0'+(memberAt+1)+' / 0'+members.length;
     photo.classList.toggle('placeholder',!m.image);
     photo.innerHTML=m.image?'<img src="'+m.image+'" alt="'+m.alt+'">':'';
@@ -952,6 +981,8 @@ body.link-hover .cursor-ring{width:52px;height:52px;border-color:rgba(94,151,255
   }
   var driveLongRoot=document.getElementById('driveLongPanel'),driveShortRoot=document.getElementById('driveShortPanel');
   driveLongGroups.forEach(function(group){renderDriveCollection(driveLongRoot,group.title,group.items,'long')});
+  var selectedNicheEdits=document.getElementById('selectedNicheEdits');
+  if(driveLongRoot&&selectedNicheEdits)driveLongRoot.appendChild(selectedNicheEdits);
   renderDriveCollection(driveShortRoot,'Short-form edits',driveShortItems,'short');
   var driveFormatTabs=document.querySelectorAll('.drive-format-btn');
   function selectDriveFormat(tab){
